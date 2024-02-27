@@ -1,6 +1,7 @@
-import {logError} from '../utils/logger.ts';
+import {logger} from 'react-native-logs';
 
 const apiUrl = 'https://world.openfoodfacts.org/api/v2/product/';
+const log = logger.createLogger();
 
 export async function getProduct(barcode: string) {
   interface ProductData {
@@ -26,7 +27,7 @@ export async function getProduct(barcode: string) {
     data.categories = json.product.categories;
     data.nutriments = json.product.nutriments;
   } catch (error: any) {
-    logError(error);
+    log.error('Erreur lors de la récupération du produit', {error});
     // Retourner un objet d'erreur spécifique
     return {error: true, message: 'Erreur lors de la récupération du produit.'};
   }
