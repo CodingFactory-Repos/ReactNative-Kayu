@@ -1,3 +1,5 @@
+import {logError} from '../utils/logger.ts';
+
 const apiUrl = 'https://world.openfoodfacts.org/api/v2/product/';
 
 export async function getProduct(barcode: string) {
@@ -23,9 +25,10 @@ export async function getProduct(barcode: string) {
     data.nutriscore = json.product.nutriscore_grade;
     data.categories = json.product.categories;
     data.nutriments = json.product.nutriments;
-  } catch (error) {
-    console.error(error);
-    data = null;
+  } catch (error: any) {
+    logError(error);
+    // Retourner un objet d'erreur spécifique
+    return {error: true, message: 'Erreur lors de la récupération du produit.'};
   }
 
   return data;
