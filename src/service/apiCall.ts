@@ -8,7 +8,8 @@ export async function getProduct(barcode: string) {
     categories: string;
     nutriments: object; // ou un type plus spécifique si possible
   }
-  let data: ProductData | null = null;
+
+  let data: ProductData | any = null;
 
   try {
     const response = await fetch(apiUrl + barcode);
