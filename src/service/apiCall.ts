@@ -1,15 +1,14 @@
 const apiUrl = 'https://world.openfoodfacts.org/api/v2/product/';
 
 export async function getProduct(barcode: string) {
-  let data:
-    | {
-        code: any;
-        name: any;
-        nutriscore: any;
-        categories: any;
-        nutriments: any;
-      }
-    | any;
+  interface ProductData {
+    code: string;
+    name: string;
+    nutriscore: string;
+    categories: string;
+    nutriments: object; // ou un type plus spécifique si possible
+  }
+  let data: ProductData | null = null;
 
   await fetch(apiUrl + barcode)
     .then(result => result.json())
