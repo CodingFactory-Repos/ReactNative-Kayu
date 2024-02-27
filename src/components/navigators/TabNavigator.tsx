@@ -1,8 +1,8 @@
-import React from 'react';
+// import React from 'react';
 
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-const Tab = createBottomTabNavigator();
+// const Tab = createBottomTabNavigator();
 
 // const TabNavigator = () => {
 //   return (
