@@ -17,6 +17,7 @@ const AccountScreen = () => null;
 
 const App = () => {
   const {hasPermission, requestPermission} = useCameraPermission();
+  const renderIcon = (name) => ({color, size}) => <Icon name={name} color={color} size={size} />;
 
   useEffect(() => {
     if (!hasPermission) {
@@ -25,42 +26,41 @@ const App = () => {
   }, [hasPermission, requestPermission]);
 
   return (
-    const renderIcon = (name) => ({color, size}) => <Icon name={name} color={color} size={size} />;
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen
           name="Veggies"
           component={LastScanScreen}
           options={{
-            tabBarIcon: renderIcon("carrot"),
+            tabBarIcon: this.renderIcon("carrot"),
           }}
         />
         <Tab.Screen
           name="Plate"
           component={PlateScreen}
           options={{
-            tabBarIcon: renderIcon("food"),
+            tabBarIcon: this.renderIcon("food"),
           }}
         />
         <Tab.Screen
           name="QRScan"
           component={QRScanScreen}
           options={{
-            tabBarIcon: renderIcon("qrcode-scan"),
+            tabBarIcon: this.renderIcon("qrcode-scan"),
           }}
         />
         <Tab.Screen
           name="Search"
           component={SearchScreen}
           options={{
-            tabBarIcon: renderIcon("magnify"),
+            tabBarIcon: this.renderIcon("magnify"),
           }}
         />
         <Tab.Screen
           name="Account"
           component={AccountScreen}
           options={{
-            tabBarIcon: renderIcon("account-circle"),
+            tabBarIcon: this.renderIcon("account-circle"),
           }}
         />
       </Tab.Navigator>
