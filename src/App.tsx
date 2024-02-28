@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useCameraPermission} from 'react-native-vision-camera';
@@ -17,7 +17,6 @@ const QRScanScreen = () => null;
 const SearchScreen = () => null;
 
 const App = () => {
-  const navigation = useNavigation();
   const {hasPermission, requestPermission} = useCameraPermission();
   const renderIcon =
     (name: string) =>
@@ -39,7 +38,7 @@ const App = () => {
         log.error('no user token');
       }
     });
-  }, [navigation]);
+  }, []);
 
   return (
     <NavigationContainer>
