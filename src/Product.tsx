@@ -16,7 +16,7 @@ const ProductItem = ({ title, subtitle, badgeText, defects, qualities }: Product
       <View style={styles.header}>
         <Image
           style={styles.image}
-          source={{ uri: 'https://placehold.co/40x40' }}
+          source={{ uri: '' }}
         />
         <View style={styles.headerText}>
           <Text style={styles.title}>{title}</Text>
