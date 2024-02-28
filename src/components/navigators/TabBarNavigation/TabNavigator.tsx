@@ -62,7 +62,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.QRSCAN}
-        component={QRScanScreen}
+        component={Imager}
         options={{
           tabBarIcon: renderIcon('qrcode-scan'),
         }}
