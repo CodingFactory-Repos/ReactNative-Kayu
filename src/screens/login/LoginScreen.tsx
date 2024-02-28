@@ -24,11 +24,12 @@ const LoginScreen = () => {
     navigation.navigate(ACCOUNT_NAVIGATOR_ROUTES.REGISTER);
   }
 
-  function validateEmail(email) {
+  function validateEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
-  function validatePassword(password) {
+
+  function validatePassword(password: string): boolean {
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     return passwordRegex.test(password);
   }
@@ -78,6 +79,7 @@ const LoginScreen = () => {
                 placeholder="Adresse email"
                 textContentType={'emailAddress'}
                 style={styles.textInput}
+                placeholderTextColor="black"
                 onChangeText={text => setEmail(text)}
               />
               <TextInput
@@ -85,6 +87,7 @@ const LoginScreen = () => {
                 textContentType={'password'}
                 style={styles.passwordInput}
                 secureTextEntry={true}
+                placeholderTextColor="black"
                 onChangeText={text => setPassword(text)}
               />
             </View>
