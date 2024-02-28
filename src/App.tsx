@@ -13,51 +13,42 @@ const AccountScreen = () => null;
 
 const App = () => {
   return (
+    const renderIcon = (name) => ({color, size}) => <Icon name={name} color={color} size={size} />;
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen
           name="Veggies"
           component={LastScanScreen}
           options={{
-            tabBarIcon: ({color, size}) => (
-              <Icon name="carrot" color={color} size={size} />
-            ),
+            tabBarIcon: renderIcon("carrot"),
           }}
         />
         <Tab.Screen
           name="Plate"
           component={PlateScreen}
           options={{
-            tabBarIcon: ({color, size}) => (
-              <Icon name="food" color={color} size={size} />
-            ),
+            tabBarIcon: renderIcon("food"),
           }}
         />
         <Tab.Screen
           name="QRScan"
           component={QRScanScreen}
           options={{
-            tabBarIcon: ({color, size}) => (
-              <Icon name="qrcode-scan" color={color} size={size} />
-            ),
+            tabBarIcon: renderIcon("qrcode-scan"),
           }}
         />
         <Tab.Screen
           name="Search"
           component={SearchScreen}
           options={{
-            tabBarIcon: ({color, size}) => (
-              <Icon name="magnify" color={color} size={size} />
-            ),
+            tabBarIcon: renderIcon("magnify"),
           }}
         />
         <Tab.Screen
           name="Account"
           component={AccountScreen}
           options={{
-            tabBarIcon: ({color, size}) => (
-              <Icon name="account-circle" color={color} size={size} />
-            ),
+            tabBarIcon: renderIcon("account-circle"),
           }}
         />
       </Tab.Navigator>
