@@ -1,4 +1,12 @@
 import {StyleSheet} from 'react-native';
+import {Colors} from '../../utils/colors.ts';
+
+const baseTextInput = {
+  borderWidth: 1,
+  padding: 10,
+  borderRadius: 10,
+  borderColor: 'gray',
+};
 
 export const styles = StyleSheet.create({
   safeAreaView: {
@@ -17,7 +25,7 @@ export const styles = StyleSheet.create({
     flex: 3,
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    backgroundColor: '#BB93E5',
+    backgroundColor: Colors.primary,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 20,
@@ -26,18 +34,12 @@ export const styles = StyleSheet.create({
     width: '80%',
   },
   textInput: {
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 10,
-    borderColor: 'grey',
+    ...baseTextInput,
   },
   passwordInput: {
-    borderWidth: 1,
-    padding: 10,
+    ...baseTextInput,
     marginTop: 10,
-    borderRadius: 10,
-    borderColor: 'grey',
-    color: 'black',
+    color: Colors.black,
   },
   buttonView: {
     marginTop: 10,
