@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -10,12 +10,45 @@ import {
 import {styles} from './LoginScreen.styles.ts';
 import {useNavigation} from '@react-navigation/native';
 import {ACCOUNT_NAVIGATOR_ROUTES} from '../../components/navigators/AccountNavigator/AccountNavigator.interfaces.ts';
+import {logger} from 'react-native-logs';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
 
 const LoginScreen = () => {
+  const log = logger.createLogger();
   const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   function RedirectToRegister() {
     navigation.navigate(ACCOUNT_NAVIGATOR_ROUTES.REGISTER);
+  }
+
+  function Login() {
+    if (!email || !password) {
+      log.error('Email or password is empty');
+      return;
+    }
+
+    // Check if email is valid with regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      log.error('Email is not valid');
+      return;
+    }
+
+    // Check if password is valid with regex
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      log.error(
+        'Password is not valid. It must contain at least 8 characters, one letter and one number',
+      );
+      return;
+    }
+
+    AsyncStorage.setItem('user', email).then(() => {
+      navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
+    });
   }
 
   return (
@@ -34,11 +67,14 @@ const LoginScreen = () => {
               placeholder="Email"
               textContentType={'emailAddress'}
               style={styles.textInput}
+              onChangeText={text => setEmail(text)}
             />
             <TextInput
               placeholder="Password"
               textContentType={'password'}
               style={styles.passwordInput}
+              secureTextEntry={true}
+              onChangeText={text => setPassword(text)}
             />
           </View>
           <View style={styles.buttonView}>
@@ -53,7 +89,9 @@ const LoginScreen = () => {
           </View>
         </View>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText} onPress={() => Login()}>
+            Se connecter
+          </Text>
         </TouchableOpacity>
       </View>
     </>
