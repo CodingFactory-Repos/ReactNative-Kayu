@@ -2,13 +2,9 @@ import React, {useEffect} from 'react';
 import {ColorValue} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {
-  getFocusedRouteNameFromRoute,
-  useNavigation,
-} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 import AccountNavigator from '../AccountNavigator';
-import {ACCOUNT_NAVIGATOR_ROUTES} from '../AccountNavigator/AccountNavigator.interfaces.ts';
 import CarrotScreen from '../../../screens/carrot/CarrotScreen';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -81,20 +77,7 @@ const TabNavigator = () => {
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.ACCOUNT}
         component={AccountNavigator}
-        options={({route}) => {
-          const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-          console.log(route);
-          if (
-            routeName === ACCOUNT_NAVIGATOR_ROUTES.LOGIN ||
-            routeName === ACCOUNT_NAVIGATOR_ROUTES.REGISTER
-          ) {
-            return {
-              tabBarStyle: {
-                display: 'none',
-              },
-            };
-          }
-
+        options={() => {
           return {
             tabBarStyle: {
               display: 'flex',

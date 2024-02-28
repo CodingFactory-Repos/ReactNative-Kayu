@@ -6,6 +6,7 @@ import {
   RootNavigatorInterfaces,
 } from './RootNavigator.interfaces.ts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import AuthTabNavigator from '../AuthNavigator/AuthTabNavigator.tsx';
 
 const RootStack = createNativeStackNavigator<RootNavigatorInterfaces>();
 
@@ -39,7 +40,7 @@ const RootNavigator = () => {
       />
       <RootStack.Screen
         name={ROOT_NAVIGATOR_ROUTE_NAMES.AUTH}
-        component={TabNavigator}
+        component={AuthTabNavigator}
       />
     </RootStack.Navigator>
   );
