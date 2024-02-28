@@ -2,8 +2,10 @@ import React, {useEffect} from 'react';
 import {ColorValue} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
-import {useNavigation} from '@react-navigation/native';
+import {
+  getFocusedRouteNameFromRoute,
+  useNavigation,
+} from '@react-navigation/native';
 
 import AccountNavigator from '../AccountNavigator';
 import {ACCOUNT_NAVIGATOR_ROUTES} from '../AccountNavigator/AccountNavigator.interfaces.ts';
@@ -81,13 +83,7 @@ const TabNavigator = () => {
         component={AccountNavigator}
         options={({route}) => {
           const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-          console.log(routeName);
-
-          if (routeName === ACCOUNT_NAVIGATOR_ROUTES.PROFILE) {
-            return {
-              tabBarIcon: renderIcon('account'),
-            };
-          }
+          console.log(route);
           if (
             routeName === ACCOUNT_NAVIGATOR_ROUTES.LOGIN ||
             routeName === ACCOUNT_NAVIGATOR_ROUTES.REGISTER
