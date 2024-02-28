@@ -1,79 +1,50 @@
 import React from 'react';
 import {
-  Button,
   Image,
   SafeAreaView,
-  StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from 'react-native';
+import {styles} from './LoginScreen.styles.ts';
 
 const LoginScreen = () => {
   return (
-    <SafeAreaView style={styles.screen}>
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <>
+      <SafeAreaView style={styles.safeAreaView}>
         <Image
           source={require('../../../assets/kayu.png')}
-          style={{width: 200, height: 200}}
+          style={styles.image}
         />
-        <Text style={{fontSize: 24, fontWeight: 'bold'}}>
-          Welcome back to Kayu
-        </Text>
-      </View>
-      <View
-        style={{
-          flex: 3,
-          alignItems: 'center',
-          justifyContent: 'space-evenly',
-        }}>
-        <Text style={{fontSize: 24, fontWeight: 'bold'}}>Login</Text>
-
-        <View style={{width: '80%'}}>
+        <Text style={styles.text}>Welcome back to Kayu</Text>
+      </SafeAreaView>
+      <View style={styles.view}>
+        <View style={styles.innerView}>
           <View>
             <TextInput
               placeholder="Email"
-              style={{
-                borderWidth: 1,
-                padding: 10,
-                borderRadius: 10,
-                borderColor: 'grey',
-              }}
+              textContentType={'emailAddress'}
+              style={styles.textInput}
             />
             <TextInput
               placeholder="Password"
-              style={{
-                borderWidth: 1,
-                padding: 10,
-                marginTop: 10,
-                borderRadius: 10,
-                borderColor: 'grey',
-              }}
+              textContentType={'password'}
+              style={styles.passwordInput}
             />
           </View>
-          <View style={{width: '80%', marginTop: 10}}>
-            <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text style={{textAlign: 'left', width: '50%'}}>
-                Forgot Password?
-              </Text>
-              <Text style={{textAlign: 'right', width: '50%'}}>
-                You don't have an account?
-              </Text>
+          <View style={styles.buttonView}>
+            <View style={styles.row}>
+              <Text style={styles.leftText}>Forgot Password?</Text>
+              <Text style={styles.rightText}>You don't have an account?</Text>
             </View>
-            <Button title="Login" />
           </View>
         </View>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-});
-
 export default LoginScreen;
