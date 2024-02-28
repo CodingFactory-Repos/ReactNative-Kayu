@@ -86,7 +86,10 @@ const TabNavigator = () => {
               tabBarIcon: renderIcon('account'),
             };
           }
-          if (routeName === ACCOUNT_NAVIGATOR_ROUTES.LOGIN || routeName === ACCOUNT_NAVIGATOR_ROUTES.REGISTER) {
+          if (
+            routeName === ACCOUNT_NAVIGATOR_ROUTES.LOGIN ||
+            routeName === ACCOUNT_NAVIGATOR_ROUTES.REGISTER
+          ) {
             return {
               tabBarStyle: {
                 display: 'none',
