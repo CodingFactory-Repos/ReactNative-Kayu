@@ -13,11 +13,12 @@ import {
   TAB_BAR_NAVIGATOR_ROUTES,
   TabBarNavigatorParamList,
 } from './TabNavigator.interfaces.ts';
+import {Imager} from '../../../screens/imager/Imager';
 
 const Tab = createBottomTabNavigator<TabBarNavigatorParamList>();
 
 const PlateScreen = () => null;
-const QRScanScreen = () => null;
+const QRScanScreen = () => Imager();
 const SearchScreen = () => null;
 
 const TabNavigator = () => {
