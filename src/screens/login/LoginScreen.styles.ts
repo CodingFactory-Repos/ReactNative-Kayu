@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
   passwordInput: {
     ...baseTextInput,
     marginTop: 10,
-    color: Colors.black,
+    color: 'black',
   },
   buttonView: {
     marginTop: 10,
