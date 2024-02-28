@@ -24,22 +24,27 @@ const LoginScreen = () => {
     navigation.navigate(ACCOUNT_NAVIGATOR_ROUTES.REGISTER);
   }
 
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+  function validatePassword(password) {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return passwordRegex.test(password);
+  }
+
   function Login() {
     if (!email || !password) {
       log.error('Email or password is empty');
       return;
     }
 
-    // Check if email is valid with regex
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!validateEmail(email)) {
       log.error('Email is not valid');
       return;
     }
 
-    // Check if password is valid with regex
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    if (!passwordRegex.test(password)) {
+    if (!validatePassword(password)) {
       log.error(
         'Password is not valid. It must contain at least 8 characters, one letter and one number',
       );
