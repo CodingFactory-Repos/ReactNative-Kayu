@@ -11,6 +11,7 @@ import {styles} from './LoginScreen.styles.ts';
 import {useNavigation} from '@react-navigation/native';
 import {ACCOUNT_NAVIGATOR_ROUTES} from '../../components/navigators/AccountNavigator/AccountNavigator.interfaces.ts';
 import {logger} from 'react-native-logs';
+import database from '@react-native-firebase/database';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
 
@@ -52,9 +53,28 @@ const LoginScreen = () => {
       return;
     }
 
-    AsyncStorage.setItem('user', email).then(() => {
-      navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
-    });
+    // Check if user exists in database
+    database()
+      .app.database(
+        'https://kayu-c268c-default-rtdb.europe-west1.firebasedatabase.app/',
+      )
+      .ref('users/' + email)
+      .once('value')
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          const user = snapshot.val();
+          if (user.password === password) {
+            log.info('User logged in', {user});
+            AsyncStorage.setItem('user', email).then(() => {
+              navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
+            });
+          } else {
+            log.error('Password is incorrect');
+          }
+        } else {
+          log.error('User does not exist');
+        }
+      });
   }
 
   return (
