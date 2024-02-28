@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {ColorValue} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 
@@ -33,37 +33,48 @@ const TabNavigator = () => {
 
   const renderIcon =
     (name: string) =>
-    // eslint-disable-next-line react/no-unstable-nested-components
     ({color, size}: {color: ColorValue; size: number}) =>
-      <Icon name={name} color={color} size={size} />;
+      <MaterialCommunityIcons name={name} color={color} size={size} />;
   return (
     <Tab.Navigator initialRouteName="Carrot">
       <Tab.Screen
         name="Carrot"
         component={CarrotScreen}
         options={{
-          tabBarIcon: renderIcon('carrot'),
+          tabBarLabel: 'Last Scan',
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
         }}
       />
       <Tab.Screen
         name="Plate"
         component={PlateScreen}
         options={{
-          tabBarIcon: renderIcon('food'),
+          tabBarLabel: 'Plats',
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
         }}
       />
       <Tab.Screen
         name="QRScan"
         component={QRScanScreen}
         options={{
-          tabBarIcon: renderIcon('qrcode-scan'),
+          tabBarLabel: 'QRScan',
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
         }}
       />
       <Tab.Screen
         name="Search"
         component={SearchScreen}
         options={{
-          tabBarIcon: renderIcon('magnify'),
+          tabBarLabel: 'Search',
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
         }}
       />
       <Tab.Screen
