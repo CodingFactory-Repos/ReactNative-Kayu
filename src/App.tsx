@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();
@@ -19,7 +19,7 @@ const App = () => {
           name="Veggies"
           component={LastScanScreen}
           options={{
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({color, size}) => (
               <Icon name="carrot" color={color} size={size} />
             ),
           }}
@@ -28,7 +28,7 @@ const App = () => {
           name="Plate"
           component={PlateScreen}
           options={{
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({color, size}) => (
               <Icon name="food" color={color} size={size} />
             ),
           }}
@@ -37,7 +37,7 @@ const App = () => {
           name="QRScan"
           component={QRScanScreen}
           options={{
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({color, size}) => (
               <Icon name="qrcode-scan" color={color} size={size} />
             ),
           }}
@@ -46,7 +46,7 @@ const App = () => {
           name="Search"
           component={SearchScreen}
           options={{
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({color, size}) => (
               <Icon name="magnify" color={color} size={size} />
             ),
           }}
@@ -55,7 +55,7 @@ const App = () => {
           name="Account"
           component={AccountScreen}
           options={{
-            tabBarIcon: ({ color, size }) => (
+            tabBarIcon: ({color, size}) => (
               <Icon name="account-circle" color={color} size={size} />
             ),
           }}

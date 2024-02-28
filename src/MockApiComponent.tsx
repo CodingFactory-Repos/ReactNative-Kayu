@@ -1,10 +1,10 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, ScrollView } from 'react-native';
-import NutritionInfo from './NutritionInfo'; 
+import {SafeAreaView, StyleSheet, ScrollView} from 'react-native';
+import NutritionInfo from './NutritionInfo';
 
 const fakeApiData = {
-  product_name: "Ourson Chocolat",
-  ingredients_text: "Cacao, sucre, lait",
+  product_name: 'Ourson Chocolat',
+  ingredients_text: 'Cacao, sucre, lait',
   nutriments: {
     carbohydrates: 54,
     proteins: 7,
@@ -12,8 +12,8 @@ const fakeApiData = {
     sugars: 100,
     salt: 0.2,
   },
-  ecoscore_score: "75",
-  nutriscore_grade: "B",
+  ecoscore_score: '75',
+  nutriscore_grade: 'B',
 };
 
 const App = () => {

@@ -1,8 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
-const NutritionInfo = ({ data}) => {
-  const { product_name, ingredients_text, nutriments, ecoscore_score, nutriscore_grade } = data;
+const NutritionInfo = ({data}) => {
+  const {
+    product_name,
+    ingredients_text,
+    nutriments,
+    ecoscore_score,
+    nutriscore_grade,
+  } = data;
 
   return (
     <View style={styles.container}>

@@ -1,5 +1,13 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 interface ProductItemProps {
@@ -10,14 +18,17 @@ interface ProductItemProps {
   qualities: string[];
 }
 
-const ProductItem = ({ title, subtitle, badgeText, defects, qualities }: ProductItemProps) => {
+const ProductItem = ({
+  title,
+  subtitle,
+  badgeText,
+  defects,
+  qualities,
+}: ProductItemProps) => {
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Image
-          style={styles.image}
-          source={{ uri: '' }}
-        />
+        <Image style={styles.image} source={{uri: ''}} />
         <View style={styles.headerText}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>
