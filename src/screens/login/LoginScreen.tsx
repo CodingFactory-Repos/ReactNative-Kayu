@@ -60,39 +60,41 @@ const LoginScreen = () => {
         />
         <Text style={styles.text}>Welcome back to Kayu</Text>
       </SafeAreaView>
-      <View style={styles.view}>
-        <View style={styles.innerView}>
-          <View>
-            <TextInput
-              placeholder="Email"
-              textContentType={'emailAddress'}
-              style={styles.textInput}
-              onChangeText={text => setEmail(text)}
-            />
-            <TextInput
-              placeholder="Password"
-              textContentType={'password'}
-              style={styles.passwordInput}
-              secureTextEntry={true}
-              onChangeText={text => setPassword(text)}
-            />
-          </View>
-          <View style={styles.buttonView}>
-            <View style={styles.row}>
-              <Text style={styles.leftText}>Forgot Password?</Text>
-              <Text
-                style={styles.rightText}
-                onPress={() => RedirectToRegister()}>
-                Don't have an account?
-              </Text>
+      <View style={styles.viewRegister}>
+        <Text
+          style={styles.registerButton}
+          onPress={() => RedirectToRegister()}>
+          S'inscrire
+        </Text>
+        <View style={styles.view}>
+          <View style={styles.innerView}>
+            <View>
+              <TextInput
+                placeholder="Adresse email"
+                textContentType={'emailAddress'}
+                style={styles.textInput}
+                onChangeText={text => setEmail(text)}
+              />
+              <TextInput
+                placeholder="Mot de passe"
+                textContentType={'password'}
+                style={styles.passwordInput}
+                secureTextEntry={true}
+                onChangeText={text => setPassword(text)}
+              />
+            </View>
+            <View style={styles.buttonView}>
+              <View style={styles.row}>
+                <Text>Mot de passe oublié?</Text>
+              </View>
             </View>
           </View>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText} onPress={() => Login()}>
+              Se connecter
+            </Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText} onPress={() => Login()}>
-            Se connecter
-          </Text>
-        </TouchableOpacity>
       </View>
     </>
   );
