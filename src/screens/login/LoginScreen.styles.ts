@@ -28,6 +28,14 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
+    width: '100%',
+  },
+  viewRegister: {
+    flex: 3,
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     marginTop: 20,
   },
   innerView: {
@@ -38,7 +46,7 @@ export const styles = StyleSheet.create({
   },
   passwordInput: {
     ...baseTextInput,
-    marginTop: 10,
+    marginTop: 20,
     color: 'black',
   },
   buttonView: {
@@ -48,21 +56,22 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  leftText: {
-    textAlign: 'left',
-    width: '50%',
-  },
-  rightText: {
-    textAlign: 'right',
-    width: '50%',
-  },
   button: {
-    backgroundColor: 'white',
     padding: 10,
     borderRadius: 10,
-    marginTop: 50,
     alignItems: 'center',
     width: '80%',
+    textAlign: 'center',
+    backgroundColor: 'white',
+    marginTop: 50,
+  },
+  registerButton: {
+    width: '100%',
+    textAlign: 'center',
+    paddingTop: 20,
+    paddingBottom: 20,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   buttonText: {
     fontSize: 18,
