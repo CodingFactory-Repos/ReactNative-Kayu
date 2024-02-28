@@ -1,11 +1,8 @@
 import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useCameraPermission} from 'react-native-vision-camera';
-import {Provider} from 'react-redux';
-import store from './service/redux/store.ts';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,35 +32,35 @@ const App = () => {
           name="Veggies"
           component={LastScanScreen}
           options={{
-            tabBarIcon: this.renderIcon('carrot'),
+            tabBarIcon: renderIcon('carrot'),
           }}
         />
         <Tab.Screen
           name="Plate"
           component={PlateScreen}
           options={{
-            tabBarIcon: this.renderIcon('food'),
+            tabBarIcon: renderIcon('food'),
           }}
         />
         <Tab.Screen
           name="QRScan"
           component={QRScanScreen}
           options={{
-            tabBarIcon: this.renderIcon('qrcode-scan'),
+            tabBarIcon: renderIcon('qrcode-scan'),
           }}
         />
         <Tab.Screen
           name="Search"
           component={SearchScreen}
           options={{
-            tabBarIcon: this.renderIcon('magnify'),
+            tabBarIcon: renderIcon('magnify'),
           }}
         />
         <Tab.Screen
           name="Account"
           component={AccountScreen}
           options={{
-            tabBarIcon: this.renderIcon('account-circle'),
+            tabBarIcon: renderIcon('account-circle'),
           }}
         />
       </Tab.Navigator>
