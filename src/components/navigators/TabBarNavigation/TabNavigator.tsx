@@ -25,6 +25,7 @@ const TabNavigator = () => {
         console.log('user token', {userInfo});
       } else {
         console.log('user token not found');
+        // @ts-ignore
         navigate('Account');
       }
     });
