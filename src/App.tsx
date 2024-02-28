@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Imager } from './screens/imager/Imager';
+import {Imager} from './screens/imager/Imager';
 
 const Tab = createBottomTabNavigator();
 
