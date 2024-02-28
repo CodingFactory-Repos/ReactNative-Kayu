@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
   passwordInput: {
     ...baseTextInput,
     marginTop: 10,
-    color: 'black',
+    // Retiré color: 'black', si noir est déjà la couleur de texte par défaut
   },
   buttonView: {
     marginTop: 10,
@@ -47,10 +47,6 @@ export const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  leftText: {
-    textAlign: 'left',
-    width: '50%',
   },
   rightText: {
     textAlign: 'right',
