@@ -27,6 +27,15 @@ const LoginScreen = () => {
     navigation.navigate(ACCOUNT_NAVIGATOR_ROUTES.REGISTER);
   }
 
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+  function validatePassword(password) {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return passwordRegex.test(password);
+  }
+
   function Login() {
     if (!email || !password) {
       log.error('Email or password is empty');
