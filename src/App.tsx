@@ -3,6 +3,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useCameraPermission} from 'react-native-vision-camera';
+import {ColorValue} from 'react-native';
+import LoginScreen from './screens/login/LoginScreen.tsx';
 
 const Tab = createBottomTabNavigator();
 
@@ -10,13 +12,13 @@ const LastScanScreen = () => null;
 const PlateScreen = () => null;
 const QRScanScreen = () => null;
 const SearchScreen = () => null;
-const AccountScreen = () => null;
 
 const App = () => {
   const {hasPermission, requestPermission} = useCameraPermission();
   const renderIcon =
-    name =>
-    ({color, size}) =>
+    (name: string) =>
+    // eslint-disable-next-line react/no-unstable-nested-components
+    ({color, size}: {color: ColorValue; size: number}) =>
       <Icon name={name} color={color} size={size} />;
 
   useEffect(() => {
@@ -58,7 +60,7 @@ const App = () => {
         />
         <Tab.Screen
           name="Account"
-          component={AccountScreen}
+          component={LoginScreen}
           options={{
             tabBarIcon: renderIcon('account-circle'),
           }}
