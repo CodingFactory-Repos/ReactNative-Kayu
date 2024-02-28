@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
 import {ColorValue} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
-import {useNavigation} from '@react-navigation/native';
+import {
+  getFocusedRouteNameFromRoute,
+  useNavigation,
+} from '@react-navigation/native';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AccountNavigator from '../AccountNavigator';
@@ -13,11 +15,11 @@ import {
   TAB_BAR_NAVIGATOR_ROUTES,
   TabBarNavigatorParamList,
 } from './TabNavigator.interfaces.ts';
+import {Imager} from '../../../screens/imager/Imager';
 
 const Tab = createBottomTabNavigator<TabBarNavigatorParamList>();
 
 const PlateScreen = () => null;
-const QRScanScreen = () => null;
 const SearchScreen = () => null;
 
 const TabNavigator = () => {
@@ -62,7 +64,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.QRSCAN}
-        component={QRScanScreen}
+        component={Imager}
         options={{
           tabBarIcon: renderIcon('qrcode-scan'),
         }}
