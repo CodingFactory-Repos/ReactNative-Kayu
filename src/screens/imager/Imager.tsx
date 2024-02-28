@@ -4,10 +4,11 @@ import {
   Camera,
   useCameraDevice,
   useCameraFormat,
-  useCodeScanner,
   useCameraPermission,
+  useCodeScanner,
 } from 'react-native-vision-camera';
 import {getProduct} from '../../service/apiCall';
+import React from 'react';
 
 export const Imager = () => {
   const {hasPermission, requestPermission} = useCameraPermission();
@@ -18,7 +19,7 @@ export const Imager = () => {
     codeTypes: ['qr', 'ean-13'],
     onCodeScanned: codes => {
       codes.forEach(code => {
-        if (code.type == 'ean-13')
+        if (code.type === 'ean-13')
           getProduct(code.value).then(
             result =>
               console.log(
