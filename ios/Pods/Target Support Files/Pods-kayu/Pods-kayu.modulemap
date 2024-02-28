@@ -1,6 +1,0 @@
-module Pods_kayu {
-  umbrella header "Pods-kayu-umbrella.h"
-
-  export *
-  module * { export * }
-}
