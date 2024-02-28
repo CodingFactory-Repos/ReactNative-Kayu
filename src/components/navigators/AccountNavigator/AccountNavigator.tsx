@@ -8,6 +8,7 @@ import {
   AccountNavigatorParamList,
 } from './AccountNavigator.interfaces.ts';
 import LoginScreen from '../../../screens/login/LoginScreen.tsx';
+import RegisterScreen from '../../../screens/register/RegisterScreen.tsx';
 
 const Stack = createNativeStackNavigator<AccountNavigatorParamList>();
 
@@ -42,7 +43,7 @@ export default function AccountNavigator() {
       />
       <Stack.Screen
         name={ACCOUNT_NAVIGATOR_ROUTES.REGISTER}
-        component={Example}
+        component={RegisterScreen}
       />
     </Stack.Navigator>
   );
