@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-
 import {useCameraPermission} from 'react-native-vision-camera';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {logger} from 'react-native-logs';
