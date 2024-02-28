@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {SafeAreaView, StyleSheet, Text} from 'react-native';
 import {Provider} from 'react-redux';
 
-import {NavigationContainer} from '@react-navigation/native';
-import TabNavigator from './components/navigators/TabNavigator.tsx';
+// import {NavigationContainer} from '@react-navigation/native';
+// import TabNavigator from './components/navigators/TabNavigator.tsx';
 import {useCameraPermission} from 'react-native-vision-camera';
 import store from './service/redux/store.ts';
 
@@ -19,9 +19,10 @@ const App = () => {
   return (
     <SafeAreaView style={styles.screen}>
       <Provider store={store}>
-        <NavigationContainer>
-          <TabNavigator />
-        </NavigationContainer>
+        <Text>App</Text>
+        {/*<NavigationContainer>*/}
+        {/*  <TabNavigator />*/}
+        {/*</NavigationContainer>*/}
       </Provider>
     </SafeAreaView>
   );
