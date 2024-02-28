@@ -8,7 +8,7 @@ import {useNavigation} from '@react-navigation/native';
 import AccountNavigator from '../AccountNavigator';
 import {ACCOUNT_NAVIGATOR_ROUTES} from '../AccountNavigator/AccountNavigator.interfaces.ts';
 import CarrotScreen from '../../../screens/carrot/CarrotScreen';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   TAB_BAR_NAVIGATOR_ROUTES,
   TabBarNavigatorParamList,
@@ -80,7 +80,13 @@ const TabNavigator = () => {
         component={AccountNavigator}
         options={({route}) => {
           const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-          console.log(route);
+          console.log(routeName);
+
+          if (routeName === ACCOUNT_NAVIGATOR_ROUTES.PROFILE) {
+            return {
+              tabBarIcon: renderIcon('account'),
+            };
+          }
           if (
             routeName === ACCOUNT_NAVIGATOR_ROUTES.LOGIN ||
             routeName === ACCOUNT_NAVIGATOR_ROUTES.REGISTER
