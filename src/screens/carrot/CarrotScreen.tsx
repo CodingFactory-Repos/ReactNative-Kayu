@@ -71,13 +71,15 @@ const CarrotScreen = ({route}) => {
   return (
     <SafeAreaView style={styles.screen}>
       <ScrollView contentContainerStyle={styles.scrollView}>
-        <ProductItem
-          title={product.name}
-          subtitle="LU"
-          badgeText="4/100 Mauvais"
-          defects={['Additifs', 'Sucre']}
-          qualities={['Protéines', 'Fibres', 'Graisses saturées']}
-        />
+        {product && product.name && (
+          <ProductItem
+            title={product.name}
+            subtitle="Blablatest"
+            badgeText="4/100 Mauvais"
+            defects={['Additifs', 'Sucre']}
+            qualities={['Protéines', 'Fibres', 'Graisses saturées']}
+          />
+        )}
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={() => handlePress()}>
             <Text style={styles.buttonText}>Détails</Text>
