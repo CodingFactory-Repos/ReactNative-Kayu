@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -10,12 +10,51 @@ import {
 import {styles} from './LoginScreen.styles.ts';
 import {useNavigation} from '@react-navigation/native';
 import {ACCOUNT_NAVIGATOR_ROUTES} from '../../components/navigators/AccountNavigator/AccountNavigator.interfaces.ts';
+import {logger} from 'react-native-logs';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
 
 const LoginScreen = () => {
+  const log = logger.createLogger();
   const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   function RedirectToRegister() {
     navigation.navigate(ACCOUNT_NAVIGATOR_ROUTES.REGISTER);
+  }
+
+  function validateEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  function validatePassword(password: string): boolean {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return passwordRegex.test(password);
+  }
+
+  function Login() {
+    if (!email || !password) {
+      log.error('Email or password is empty');
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      log.error('Email is not valid');
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      log.error(
+        'Password is not valid. It must contain at least 8 characters, one letter and one number',
+      );
+      return;
+    }
+
+    AsyncStorage.setItem('user', email).then(() => {
+      navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
+    });
   }
 
   return (
@@ -27,34 +66,43 @@ const LoginScreen = () => {
         />
         <Text style={styles.text}>Welcome back to Kayu</Text>
       </SafeAreaView>
-      <View style={styles.view}>
-        <View style={styles.innerView}>
-          <View>
-            <TextInput
-              placeholder="Email"
-              textContentType={'emailAddress'}
-              style={styles.textInput}
-            />
-            <TextInput
-              placeholder="Password"
-              textContentType={'password'}
-              style={styles.passwordInput}
-            />
-          </View>
-          <View style={styles.buttonView}>
-            <View style={styles.row}>
-              <Text style={styles.leftText}>Forgot Password?</Text>
-              <Text
-                style={styles.rightText}
-                onPress={() => RedirectToRegister()}>
-                Don't have an account?
-              </Text>
+      <View style={styles.viewRegister}>
+        <Text
+          style={styles.registerButton}
+          onPress={() => RedirectToRegister()}>
+          S'inscrire
+        </Text>
+        <View style={styles.view}>
+          <View style={styles.innerView}>
+            <View>
+              <TextInput
+                placeholder="Adresse email"
+                textContentType={'emailAddress'}
+                style={styles.textInput}
+                placeholderTextColor="black"
+                onChangeText={text => setEmail(text)}
+              />
+              <TextInput
+                placeholder="Mot de passe"
+                textContentType={'password'}
+                style={styles.passwordInput}
+                secureTextEntry={true}
+                placeholderTextColor="black"
+                onChangeText={text => setPassword(text)}
+              />
+            </View>
+            <View style={styles.buttonView}>
+              <View style={styles.row}>
+                <Text>Mot de passe oublié?</Text>
+              </View>
             </View>
           </View>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText} onPress={() => Login()}>
+              Se connecter
+            </Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
       </View>
     </>
   );
