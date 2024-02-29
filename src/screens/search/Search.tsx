@@ -12,7 +12,6 @@ export const Search = () => {
         let products = await getProductByName(productName);
         setProducts(products);
     }
-
     
     const renderProducts = () => {
         return products.map((product, index) => (
@@ -36,7 +35,15 @@ export const Search = () => {
             <TextInput
                 placeholder='Search a product...'
                 style={styles.input}
-                onChangeText={text => setQuery(text)}
+                onChangeText={text => {
+                        setQuery(text);
+                        if(text == '')
+                        {
+                            searchForProduct(query);
+                            setProducts([]);
+                        }
+                    }
+                }
             />
             <TouchableOpacity style={styles.button} onPress={() => searchForProduct(query)}>
                 <Text style={styles.buttonText}>Search</Text>
