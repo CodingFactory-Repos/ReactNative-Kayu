@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {
+  Image,
   SafeAreaView,
   ScrollView,
-  View,
-  Text,
-  Image,
   StyleSheet,
+  Text,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
@@ -18,30 +18,34 @@ interface ProductItemProps {
   subtitle: string;
   badgeText: string;
   defects: string[];
+  categories: string;
   qualities: string[];
-  img: string;
+  image_front_small_url: string;
+  nutriscore_grade: number;
+  nutriscore_score: string;
 }
 
 const ProductItem = ({
   title,
   subtitle,
   badgeText,
+  categories,
   defects,
   qualities,
-  img,
-  nutriscoreScore,
-  nutriscoreGrade,
+  image_front_small_url,
+  nutriscore_grade,
+  nutriscore_score,
 }: ProductItemProps) => {
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Image style={styles.image} source={{uri: img}} />
+        <Image style={styles.image} source={{uri: image_front_small_url}} />
         <View style={styles.headerText}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>
         </View>
         <Text style={styles.badge}>
-          {nutriscoreScore} - "{nutriscoreGrade}/100"
+          {nutriscore_grade} - "{nutriscore_score}/100"
         </Text>
       </View>
 
@@ -61,6 +65,12 @@ const ProductItem = ({
             <Text style={styles.listText}>{quality}</Text>
           </View>
         ))}
+        <Text>{categories}</Text>
+        <Text style={styles.badge}>
+          {nutriscore_grade} - "{nutriscore_score}/100"
+        </Text>
+
+        <Image style={styles.image} source={{uri: image_front_small_url}} />
       </View>
     </View>
   );
@@ -89,8 +99,11 @@ const CarrotScreen = () => {
             subtitle="Blablatest"
             badgeText="4/100 Mauvais"
             defects={['Additifs', 'Sucre']}
+            categories={product.categories}
             qualities={['Protéines', 'Fibres', 'Graisses saturées']}
-            img={product.images}
+            image={product.images}
+            nutriscore_point={product.nutriscoreScore}
+            nutriscore={product.nutriescore_grade}
           />
         )}
         <View style={styles.buttonContainer}>

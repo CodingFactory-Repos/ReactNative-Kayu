@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
@@ -18,19 +18,6 @@ const SearchScreen = () => null;
 
 const TabNavigator = () => {
   const {navigate} = useNavigation();
-
-  useEffect(() => {
-    console.log('user token');
-    // AsyncStorage.getItem('user').then(userInfo => {
-    //   if (userInfo) {
-    //     console.log('user token', {userInfo});
-    //   } else {
-    //     console.log('user token not found');
-    //     // @ts-ignore
-    //     navigate(TAB_BAR_NAVIGATOR_ROUTES.ACCOUNT);
-    //   }
-    // });
-  }, [navigate]);
 
   return (
     <Tab.Navigator
