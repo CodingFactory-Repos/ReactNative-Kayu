@@ -13,6 +13,8 @@ const Stack = createNativeStackNavigator<AccountNavigatorParamList>();
 export default function AccountNavigator() {
   // @ts-ignore
   const {user} = useSelector(state => state.user);
+  console.log('user token', {user});
+
   if (user) {
     return (
       <Stack.Navigator
