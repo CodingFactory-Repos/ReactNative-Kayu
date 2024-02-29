@@ -4,13 +4,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   AUTH_TAB_BAR_NAVIGATOR_ROUTES,
   AuthTabBarNavigatorParamList,
-} from './AuthTabNavigator.interfaces.ts';
+} from './AuthStackNavigator.interfaces.ts';
 import LoginScreen from '../../../screens/login/LoginScreen';
 import RegisterScreen from '../../../screens/register/RegisterScreen';
 
 const Stack = createNativeStackNavigator<AuthTabBarNavigatorParamList>();
 
-const AuthTabNavigator = () => {
+const AuthStackNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName={AUTH_TAB_BAR_NAVIGATOR_ROUTES.LOGIN}
@@ -29,4 +29,4 @@ const AuthTabNavigator = () => {
   );
 };
 
-export default AuthTabNavigator;
+export default AuthStackNavigator;

@@ -7,20 +7,25 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {styles} from './LoginScreen.styles.ts';
-import {useNavigation} from '@react-navigation/native';
-import {ACCOUNT_NAVIGATOR_ROUTES} from '../../components/navigators/AccountNavigator/AccountNavigator.interfaces.ts';
 import {logger} from 'react-native-logs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
+import {useDispatch} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+
+import {styles} from './LoginScreen.styles.ts';
+import {ACCOUNT_NAVIGATOR_ROUTES} from '../../components/navigators/AccountNavigator/AccountNavigator.interfaces.ts';
+import {login} from '../../service/redux/slices/userSlice.ts';
 
 const LoginScreen = () => {
   const log = logger.createLogger();
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function RedirectToRegister() {
+    // @ts-ignore
     navigation.navigate(ACCOUNT_NAVIGATOR_ROUTES.REGISTER);
   }
 
@@ -53,7 +58,7 @@ const LoginScreen = () => {
     }
 
     AsyncStorage.setItem('user', email).then(() => {
-      navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
+      dispatch(login({email: email, password: password}));
     });
   }
 
@@ -97,10 +102,8 @@ const LoginScreen = () => {
               </View>
             </View>
           </View>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText} onPress={() => Login()}>
-              Se connecter
-            </Text>
+          <TouchableOpacity style={styles.button} onPress={() => Login()}>
+            <Text style={styles.buttonText}>Se connecter</Text>
           </TouchableOpacity>
         </View>
       </View>
