@@ -1,34 +1,38 @@
 import React, {useEffect} from 'react';
 import {ColorValue} from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AccountNavigator from '../AccountNavigator';
-import {ACCOUNT_NAVIGATOR_ROUTES} from '../AccountNavigator/account-navigator.interfaces.ts';
 import CarrotScreen from '../../../screens/carrot/CarrotScreen';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  TAB_BAR_NAVIGATOR_ROUTES,
+  TabBarNavigatorParamList,
+} from './TabNavigator.interfaces.ts';
+import {Imager} from '../../../screens/imager/Imager';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TabBarNavigatorParamList>();
 
 const PlateScreen = () => null;
-const QRScanScreen = () => null;
+const QRScanScreen = () => Imager();
 const SearchScreen = () => null;
 
 const TabNavigator = () => {
   const {navigate} = useNavigation();
 
   useEffect(() => {
-    AsyncStorage.getItem('user').then(userInfo => {
-      if (userInfo) {
-        console.log('user token', {userInfo});
-      } else {
-        console.log('user token not found');
-        // @ts-ignore
-        navigate('Account');
-      }
-    });
+    console.log('user token');
+    // AsyncStorage.getItem('user').then(userInfo => {
+    //   if (userInfo) {
+    //     console.log('user token', {userInfo});
+    //   } else {
+    //     console.log('user token not found');
+    //     // @ts-ignore
+    //     navigate(TAB_BAR_NAVIGATOR_ROUTES.ACCOUNT);
+    //   }
+    // });
   }, [navigate]);
 
   const renderIcon =
@@ -36,9 +40,13 @@ const TabNavigator = () => {
     ({color, size}: {color: ColorValue; size: number}) =>
       <MaterialCommunityIcons name={name} color={color} size={size} />;
   return (
-    <Tab.Navigator initialRouteName="Carrot">
+    <Tab.Navigator
+      initialRouteName={TAB_BAR_NAVIGATOR_ROUTES.CARROT}
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Tab.Screen
-        name="Carrot"
+        name={TAB_BAR_NAVIGATOR_ROUTES.CARROT}
         component={CarrotScreen}
         options={{
           tabBarLabel: 'Last Scan',
@@ -48,7 +56,7 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Plate"
+        name={TAB_BAR_NAVIGATOR_ROUTES.PLATE}
         component={PlateScreen}
         options={{
           tabBarLabel: 'Plats',
@@ -58,8 +66,8 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="QRScan"
-        component={QRScanScreen}
+        name={TAB_BAR_NAVIGATOR_ROUTES.QRSCAN}
+        component={Imager}
         options={{
           tabBarLabel: 'QRScan',
           tabBarIcon: ({color, size}) => (
@@ -68,7 +76,7 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Search"
+        name={TAB_BAR_NAVIGATOR_ROUTES.SEARCH}
         component={SearchScreen}
         options={{
           tabBarLabel: 'Search',
@@ -78,19 +86,9 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Account"
+        name={TAB_BAR_NAVIGATOR_ROUTES.ACCOUNT}
         component={AccountNavigator}
-        options={({route}) => {
-          const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-          if (routeName === ACCOUNT_NAVIGATOR_ROUTES.LOGIN) {
-            console.log('routeName', routeName);
-            return {
-              tabBarStyle: {
-                display: 'none',
-              },
-            };
-          }
-
+        options={() => {
           return {
             tabBarStyle: {
               display: 'flex',

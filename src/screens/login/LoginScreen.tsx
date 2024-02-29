@@ -8,8 +8,16 @@ import {
   View,
 } from 'react-native';
 import {styles} from './LoginScreen.styles.ts';
+import {useNavigation} from '@react-navigation/native';
+import {ACCOUNT_NAVIGATOR_ROUTES} from '../../components/navigators/AccountNavigator/AccountNavigator.interfaces.ts';
 
 const LoginScreen = () => {
+  const navigation = useNavigation();
+
+  function RedirectToRegister() {
+    navigation.navigate(ACCOUNT_NAVIGATOR_ROUTES.REGISTER);
+  }
+
   return (
     <>
       <SafeAreaView style={styles.safeAreaView}>
@@ -36,7 +44,11 @@ const LoginScreen = () => {
           <View style={styles.buttonView}>
             <View style={styles.row}>
               <Text style={styles.leftText}>Forgot Password?</Text>
-              <Text style={styles.rightText}>You don't have an account?</Text>
+              <Text
+                style={styles.rightText}
+                onPress={() => RedirectToRegister()}>
+                Don't have an account?
+              </Text>
             </View>
           </View>
         </View>
