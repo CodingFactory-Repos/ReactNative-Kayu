@@ -6,7 +6,7 @@ import {
   ACCOUNT_NAVIGATOR_ROUTES,
   AccountNavigatorParamList,
 } from './AccountNavigator.interfaces.ts';
-import ProfileScreen from '../../../screens/profile/ProfileScreen.tsx';
+import ProfileScreen from '../../../screens/profile/ProfileScreen';
 
 const Stack = createNativeStackNavigator<AccountNavigatorParamList>();
 
