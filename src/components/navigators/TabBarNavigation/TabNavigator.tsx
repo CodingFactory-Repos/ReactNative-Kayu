@@ -4,13 +4,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 
 import AccountNavigator from '../AccountNavigator';
-import CarrotScreen from '../../../screens/carrot/CarrotScreen';
 import {
   TAB_BAR_NAVIGATOR_ROUTES,
   TabBarNavigatorParamList,
 } from './TabNavigator.interfaces.ts';
 import {Imager} from '../../../screens/imager/Imager';
-import CarrotNavigator from "../CarrotNavigator/CarrotNavigator.tsx";
+import CarrotNavigator from '../CarrotNavigator/CarrotNavigator.tsx';
 
 const Tab = createBottomTabNavigator<TabBarNavigatorParamList>();
 
@@ -35,7 +34,7 @@ const TabNavigator = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName={TAB_BAR_NAVIGATOR_ROUTES.CARROT}
+      initialRouteName={TAB_BAR_NAVIGATOR_ROUTES.PLATE}
       screenOptions={{
         headerShown: false,
       }}>
