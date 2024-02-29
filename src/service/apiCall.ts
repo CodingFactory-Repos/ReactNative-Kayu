@@ -1,5 +1,3 @@
-import {logger} from 'react-native-logs';
-
 const apiUrl = 'https://world.openfoodfacts.org/api/v2/product/';
 
 export async function getProduct(barcode: string) {
