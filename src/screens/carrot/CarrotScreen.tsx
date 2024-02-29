@@ -9,6 +9,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {useNavigation} from '@react-navigation/native';
+import {CARROT_NAVIGATOR_ROUTES} from '../../components/navigators/CarrotNavigator/CarrotNavigator.interfaces.ts';
 
 interface ProductItemProps {
   title: string;
@@ -58,7 +60,15 @@ const ProductItem = ({
 };
 
 const CarrotScreen = ({ route }) => {
+  
   const { product } = route.params;
+
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate(CARROT_NAVIGATOR_ROUTES.MOCK);
+  };
+
   return (
     <SafeAreaView style={styles.screen}>
       <ScrollView contentContainerStyle={styles.scrollView}>
@@ -70,7 +80,7 @@ const CarrotScreen = ({ route }) => {
           qualities={['Protéines', 'Fibres', 'Graisses saturées']}
         />
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => handlePress()}>
             <Text style={styles.buttonText}>Détails</Text>
           </TouchableOpacity>
         </View>
