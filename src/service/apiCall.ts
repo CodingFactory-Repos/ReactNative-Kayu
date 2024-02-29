@@ -29,11 +29,24 @@ export async function getProductByName(productName: string)
   .catch(err => console.error(err))
   .then(json => rawJson = json);
 
-  for(let i = 0; i < 15; i++)
+  for(let i = 0; i <= 15; i++)
   {
     let object = {};
     if (!rawJson.products[i].product_name || rawJson.products[i].product_name == '') continue;
-    // if(!rawJson.products[i].product_name.toLocaleLowerCase().startsWith(productName.toLocaleLowerCase())) continue;
+
+    let alreadyPresent = false;
+    // no foreach, because we want to use break;
+    for(let j = 0; j < data.length; j++)
+    {
+      if(data[j].name.toLocaleLowerCase() == rawJson.products[i].product_name.toLocaleLowerCase())
+      {
+        alreadyPresent = true;
+        break;
+      }
+    }
+    
+    if(alreadyPresent) continue;
+
     object.name = rawJson.products[i].product_name;
     object.nutriscore = rawJson.products[i].nutriscore_grade;
     object.categories = rawJson.products[i].categories;

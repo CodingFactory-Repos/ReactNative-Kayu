@@ -37,15 +37,11 @@ export const Search = () => {
                 style={styles.input}
                 onChangeText={text => {
                         setQuery(text);
-                        if(text == '')
-                        {
-                            searchForProduct(query);
-                            setProducts([]);
-                        }
+                        if(text == '') setProducts([])
                     }
                 }
             />
-            <TouchableOpacity style={styles.button} onPress={() => searchForProduct(query)}>
+            <TouchableOpacity style={styles.button} onPress={() => {setProducts([]); searchForProduct(query);}}>
                 <Text style={styles.buttonText}>Search</Text>
             </TouchableOpacity>
             <ScrollView>
