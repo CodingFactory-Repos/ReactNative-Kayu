@@ -3,9 +3,7 @@ import React, {useEffect} from 'react';
 import {SafeAreaView, Text} from 'react-native';
 
 const CarrotScreen = () => {
-  useEffect(() => {
-    
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <SafeAreaView>
