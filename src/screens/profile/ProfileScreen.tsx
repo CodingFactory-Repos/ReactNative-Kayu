@@ -21,11 +21,11 @@ const ProfileScreen = () => {
         style={styles.image}
       />
       <Text>Bonjour {user?.email}</Text>
-      <div>
+      <View>
         <Text>Information : </Text>
         <Text>Email: {user?.email}</Text>
         <Text> Password : {user?.password} </Text>
-      </div>
+      </View>
     </View>
   );
 };

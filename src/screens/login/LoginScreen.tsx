@@ -9,37 +9,25 @@ import {
 } from 'react-native';
 import {logger} from 'react-native-logs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
 
 import {styles} from './LoginScreen.styles.ts';
-import {useNavigation} from '@react-navigation/native';
 import {ACCOUNT_NAVIGATOR_ROUTES} from '../../components/navigators/AccountNavigator/AccountNavigator.interfaces.ts';
-import {logger} from 'react-native-logs';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
 import {validateEmail, validatePassword} from '../../utils/validationUtils.ts';
-
-import {styles} from './LoginScreen.styles.ts';
-import {ACCOUNT_NAVIGATOR_ROUTES} from '../../components/navigators/AccountNavigator/AccountNavigator.interfaces.ts';
 import {login} from '../../service/redux/slices/userSlice.ts';
 
 const LoginScreen = () => {
+  const log = logger.createLogger();
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   function RedirectToRegister() {
-    // @ts-ignore
     navigation.navigate(ACCOUNT_NAVIGATOR_ROUTES.REGISTER);
-  }
-
-  function validateEmail(email: string): boolean {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
-
-  function validatePassword(password: string): boolean {
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    return passwordRegex.test(password);
   }
 
   function Login() {
@@ -62,7 +50,8 @@ const LoginScreen = () => {
 
     AsyncStorage.setItem('user', email)
       .then(() => {
-        navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
+        log.info('User set to async storage');
+        dispatch(login({email, password}));
       })
       .catch(error => {
         log.error('Error while setting user to async storage', error);
@@ -78,28 +67,30 @@ const LoginScreen = () => {
         />
         <Text style={styles.text}>Welcome back to Kayu</Text>
       </SafeAreaView>
-      <View style={styles.view}>
-        <View style={styles.innerView}>
-          <View>
-            <TextInput
-              placeholder="Email"
-              textContentType={'emailAddress'}
-              style={styles.textInput}
-            />
-            <TextInput
-              placeholder="Password"
-              textContentType={'password'}
-              style={styles.passwordInput}
-            />
-          </View>
-          <View style={styles.buttonView}>
-            <View style={styles.row}>
-              <Text style={styles.leftText}>Forgot Password?</Text>
-              <Text
-                style={styles.rightText}
-                onPress={() => RedirectToRegister()}>
-                Don't have an account?
-              </Text>
+      <View style={styles.viewRegister}>
+        <Text
+          style={styles.registerButton}
+          onPress={() => RedirectToRegister()}>
+          S'inscrire
+        </Text>
+        <View style={styles.view}>
+          <View style={styles.innerView}>
+            <View>
+              <TextInput
+                placeholder="Adresse email"
+                textContentType={'emailAddress'}
+                style={styles.textInput}
+                placeholderTextColor="black"
+                onChangeText={text => setEmail(text)}
+              />
+              <TextInput
+                placeholder="Mot de passe"
+                textContentType={'password'}
+                style={styles.passwordInput}
+                secureTextEntry={true}
+                placeholderTextColor="black"
+                onChangeText={text => setPassword(text)}
+              />
             </View>
             <View style={styles.buttonView}>
               <View style={styles.row}>
