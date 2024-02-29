@@ -35,10 +35,6 @@ const TabNavigator = () => {
     // });
   }, [navigate]);
 
-  const renderIcon =
-    (name: string) =>
-    ({color, size}: {color: ColorValue; size: number}) =>
-      <MaterialCommunityIcons name={name} color={color} size={size} />;
   return (
     <Tab.Navigator
       initialRouteName={TAB_BAR_NAVIGATOR_ROUTES.CARROT}
@@ -51,7 +47,7 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: 'Last Scan',
           tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <Icon name="home" color={color} size={size} />
           ),
         }}
       />
@@ -61,7 +57,7 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: 'Plats',
           tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <Icon name="home" color={color} size={size} />
           ),
         }}
       />
@@ -71,7 +67,7 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: 'QRScan',
           tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <Icon name="home" color={color} size={size} />
           ),
         }}
       />
@@ -81,7 +77,7 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <Icon name="home" color={color} size={size} />
           ),
         }}
       />
