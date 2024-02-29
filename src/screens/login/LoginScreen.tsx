@@ -13,6 +13,7 @@ import {ACCOUNT_NAVIGATOR_ROUTES} from '../../components/navigators/AccountNavig
 import {logger} from 'react-native-logs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
+import {validateEmail, validatePassword} from '../../utils/validationUtils.ts';
 
 const LoginScreen = () => {
   const log = logger.createLogger();
@@ -22,16 +23,6 @@ const LoginScreen = () => {
 
   function RedirectToRegister() {
     navigation.navigate(ACCOUNT_NAVIGATOR_ROUTES.REGISTER);
-  }
-
-  function validateEmail(email: string): boolean {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
-
-  function validatePassword(password: string): boolean {
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    return passwordRegex.test(password);
   }
 
   function Login() {

@@ -13,6 +13,12 @@ import {ACCOUNT_NAVIGATOR_ROUTES} from '../../components/navigators/AccountNavig
 import {logger} from 'react-native-logs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
+import {
+  validateEmail,
+  validateName,
+  validatePassword,
+  validateSurname,
+} from '../../utils/validationUtils.ts';
 
 const RegisterScreen = () => {
   const log = logger.createLogger();
@@ -24,16 +30,6 @@ const RegisterScreen = () => {
 
   function RedirectToLogin() {
     navigation.navigate(ACCOUNT_NAVIGATOR_ROUTES.LOGIN);
-  }
-
-  function validateEmail(email: string): boolean {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
-
-  function validatePassword(password: string): boolean {
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    return passwordRegex.test(password);
   }
 
   function Register() {
@@ -54,6 +50,16 @@ const RegisterScreen = () => {
       return;
     }
 
+    if (!validateName(name)) {
+      log.error('Name is not valid');
+      return;
+    }
+
+    if (!validateSurname(surname)) {
+      log.error('Surname is not valid');
+      return;
+    }
+
     AsyncStorage.setItem('user', email).then(() => {
       navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
     });
@@ -69,9 +75,7 @@ const RegisterScreen = () => {
         <Text style={styles.text}>Welcome back to Kayu</Text>
       </SafeAreaView>
       <View style={styles.viewLogin}>
-        <Text
-          style={styles.loginButton}
-          onPress={() => RedirectToLogin()}>
+        <Text style={styles.loginButton} onPress={() => RedirectToLogin()}>
           Se connecter
         </Text>
         <View style={styles.view}>
