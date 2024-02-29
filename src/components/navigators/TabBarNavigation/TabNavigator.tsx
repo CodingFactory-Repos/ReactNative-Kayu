@@ -1,16 +1,10 @@
 import React, {useEffect} from 'react';
-import {ColorValue} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {
-  getFocusedRouteNameFromRoute,
-  useNavigation,
-} from '@react-navigation/native';
-
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useNavigation} from '@react-navigation/native';
+
 import AccountNavigator from '../AccountNavigator';
-import {ACCOUNT_NAVIGATOR_ROUTES} from '../AccountNavigator/AccountNavigator.interfaces.ts';
 import CarrotScreen from '../../../screens/carrot/CarrotScreen';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   TAB_BAR_NAVIGATOR_ROUTES,
   TabBarNavigatorParamList,
@@ -26,25 +20,21 @@ const TabNavigator = () => {
   const {navigate} = useNavigation();
 
   useEffect(() => {
-    AsyncStorage.getItem('user').then(userInfo => {
-      if (userInfo) {
-        console.log('user token', {userInfo});
-      } else {
-        console.log('user token not found');
-        // @ts-ignore
-        navigate(TAB_BAR_NAVIGATOR_ROUTES.LOGIN);
-      }
-    });
+    console.log('user token');
+    // AsyncStorage.getItem('user').then(userInfo => {
+    //   if (userInfo) {
+    //     console.log('user token', {userInfo});
+    //   } else {
+    //     console.log('user token not found');
+    //     // @ts-ignore
+    //     navigate(TAB_BAR_NAVIGATOR_ROUTES.ACCOUNT);
+    //   }
+    // });
   }, [navigate]);
 
-  const renderIcon =
-    (name: string) =>
-    // eslint-disable-next-line react/no-unstable-nested-components
-    ({color, size}: {color: ColorValue; size: number}) =>
-      <Icon name={name} color={color} size={size} />;
   return (
     <Tab.Navigator
-      initialRouteName={TAB_BAR_NAVIGATOR_ROUTES.ACCOUNT}
+      initialRouteName={TAB_BAR_NAVIGATOR_ROUTES.CARROT}
       screenOptions={{
         headerShown: false,
       }}>
@@ -52,53 +42,46 @@ const TabNavigator = () => {
         name={TAB_BAR_NAVIGATOR_ROUTES.CARROT}
         component={CarrotScreen}
         options={{
-          tabBarIcon: renderIcon('carrot'),
+          tabBarLabel: 'Last Scan',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="home" color={color} size={size} />
+          ),
         }}
       />
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.PLATE}
         component={PlateScreen}
         options={{
-          tabBarIcon: renderIcon('food'),
+          tabBarLabel: 'Plats',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="home" color={color} size={size} />
+          ),
         }}
       />
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.QRSCAN}
         component={Imager}
         options={{
-          tabBarIcon: renderIcon('qrcode-scan'),
+          tabBarLabel: 'QRScan',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="home" color={color} size={size} />
+          ),
         }}
       />
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.SEARCH}
         component={SearchScreen}
         options={{
-          tabBarIcon: renderIcon('magnify'),
+          tabBarLabel: 'Search',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="home" color={color} size={size} />
+          ),
         }}
       />
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.ACCOUNT}
         component={AccountNavigator}
-        options={({route}) => {
-          const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-          console.log(routeName);
-
-          if (routeName === ACCOUNT_NAVIGATOR_ROUTES.PROFILE) {
-            return {
-              tabBarIcon: renderIcon('account'),
-            };
-          }
-          if (
-            routeName === ACCOUNT_NAVIGATOR_ROUTES.LOGIN ||
-            routeName === ACCOUNT_NAVIGATOR_ROUTES.REGISTER
-          ) {
-            return {
-              tabBarStyle: {
-                display: 'none',
-              },
-            };
-          }
-
+        options={() => {
           return {
             tabBarStyle: {
               display: 'flex',
