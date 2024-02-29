@@ -1,12 +1,10 @@
 import React, {useEffect} from 'react';
-import {ColorValue} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 
 import AccountNavigator from '../AccountNavigator';
 import CarrotScreen from '../../../screens/carrot/CarrotScreen';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   TAB_BAR_NAVIGATOR_ROUTES,
   TabBarNavigatorParamList,
@@ -16,7 +14,6 @@ import {Imager} from '../../../screens/imager/Imager';
 const Tab = createBottomTabNavigator<TabBarNavigatorParamList>();
 
 const PlateScreen = () => null;
-const QRScanScreen = () => Imager();
 const SearchScreen = () => null;
 
 const TabNavigator = () => {
