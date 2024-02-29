@@ -57,12 +57,13 @@ const ProductItem = ({
   );
 };
 
-const CarrotScreen = () => {
+const CarrotScreen = ({ route }) => {
+  const { product } = route.params;
   return (
     <SafeAreaView style={styles.screen}>
       <ScrollView contentContainerStyle={styles.scrollView}>
         <ProductItem
-          title="L'Ourson Chocolat"
+          title={product.name}
           subtitle="LU"
           badgeText="4/100 Mauvais"
           defects={['Additifs', 'Sucre']}
@@ -159,6 +160,5 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
 });
-
 
 export default CarrotScreen;
