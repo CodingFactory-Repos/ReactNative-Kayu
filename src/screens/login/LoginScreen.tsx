@@ -20,10 +20,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
 import {validateEmail, validatePassword} from '../../utils/validationUtils.ts';
 
+import {styles} from './LoginScreen.styles.ts';
+import {ACCOUNT_NAVIGATOR_ROUTES} from '../../components/navigators/AccountNavigator/AccountNavigator.interfaces.ts';
+import {login} from '../../service/redux/slices/userSlice.ts';
+
 const LoginScreen = () => {
   const navigation = useNavigation();
 
   function RedirectToRegister() {
+    // @ts-ignore
     navigation.navigate(ACCOUNT_NAVIGATOR_ROUTES.REGISTER);
   }
 
