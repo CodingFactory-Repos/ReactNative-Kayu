@@ -9,11 +9,10 @@ export function validatePassword(password: string): boolean {
 }
 
 export function validateName(name: string): boolean {
-  const nameRegex = /^[a-zA-Z]+$/;
+  const nameRegex = /^[a-zA-Z]+([ '-][a-zA-Z]+)*$/;
   return nameRegex.test(name);
 }
 
 export function validateSurname(surname: string): boolean {
-  const surnameRegex = /^[a-zA-Z]+$/;
-  return surnameRegex.test(surname);
+  return validateName(surname);
 }
