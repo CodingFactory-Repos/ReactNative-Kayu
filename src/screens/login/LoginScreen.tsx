@@ -15,12 +15,39 @@ import {useNavigation} from '@react-navigation/native';
 import {styles} from './LoginScreen.styles.ts';
 import {useNavigation} from '@react-navigation/native';
 import {ACCOUNT_NAVIGATOR_ROUTES} from '../../components/navigators/AccountNavigator/AccountNavigator.interfaces.ts';
+import {logger} from 'react-native-logs';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
+import {validateEmail, validatePassword} from '../../utils/validationUtils.ts';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
 
   function RedirectToRegister() {
     navigation.navigate(ACCOUNT_NAVIGATOR_ROUTES.REGISTER);
+  }
+
+  function Login() {
+    if (!email || !password) {
+      log.error('Email or password is empty');
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      log.error('Email is not valid');
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      log.error(
+        'Password is not valid. It must contain at least 8 characters, one letter and one number',
+      );
+      return;
+    }
+
+    AsyncStorage.setItem('user', email).then(() => {
+      navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
+    });
   }
 
   return (
