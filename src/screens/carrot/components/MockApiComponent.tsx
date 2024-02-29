@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import NutritionInfo from './NutritionInfo';
-import {CARROT_NAVIGATOR_ROUTES} from "../../../components/navigators/CarrotNavigator/CarrotNavigator.interfaces.ts";
+import {CARROT_NAVIGATOR_ROUTES} from '../../../components/navigators/CarrotNavigator/CarrotNavigator.interfaces.ts';
 
 const fakeApiData = {
   product_name: 'Ourson Chocolat',

@@ -59,9 +59,8 @@ const ProductItem = ({
   );
 };
 
-const CarrotScreen = ({ route }) => {
-  
-  const { product } = route.params;
+const CarrotScreen = ({route}) => {
+  const {product} = route.params;
 
   const navigation = useNavigation();
 

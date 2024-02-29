@@ -9,8 +9,7 @@ import {
 } from 'react-native-vision-camera';
 import {getProduct} from '../../service/apiCall';
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
-
+import {useNavigation} from '@react-navigation/native';
 
 export const Imager = () => {
   const {hasPermission, requestPermission} = useCameraPermission();
@@ -19,7 +18,6 @@ export const Imager = () => {
 
   const navigation = useNavigation();
 
-
   const codeScanner = useCodeScanner({
     codeTypes: ['qr', 'ean-13'],
     onCodeScanned: codes => {
@@ -27,7 +25,7 @@ export const Imager = () => {
         if (code.type === 'ean-13') {
           getProduct(code.value).then(result => {
             console.log(`Product found : ${result.name}`);
-            navigation.navigate('CarrotScreen', { product: result });
+            navigation.navigate('CarrotScreen', {product: result});
           });
         }
       });
