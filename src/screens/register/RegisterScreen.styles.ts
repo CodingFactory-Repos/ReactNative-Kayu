@@ -28,6 +28,14 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
+    width: '100%',
+  },
+  viewLogin: {
+    flex: 3,
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     marginTop: 20,
   },
   innerView: {
@@ -35,11 +43,24 @@ export const styles = StyleSheet.create({
   },
   textInput: {
     ...baseTextInput,
+    marginTop: 20,
   },
   passwordInput: {
     ...baseTextInput,
-    marginTop: 10,
-    // Retiré color: 'black', si noir est déjà la couleur de texte par défaut
+    marginTop: 20,
+    color: 'black',
+  },
+  nameInput: {
+    ...baseTextInput,
+    width: '49%',
+  },
+  surnameInput: {
+    ...baseTextInput,
+    width: '49%',
+  },
+  inputFlex: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   buttonView: {
     marginTop: 10,
@@ -48,17 +69,22 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  rightText: {
-    textAlign: 'right',
-    width: '100%',
-  },
   button: {
-    backgroundColor: 'white',
     padding: 10,
     borderRadius: 10,
-    marginTop: 50,
     alignItems: 'center',
     width: '80%',
+    textAlign: 'center',
+    backgroundColor: 'white',
+    marginTop: 50,
+  },
+  loginButton: {
+    width: '100%',
+    textAlign: 'center',
+    paddingTop: 20,
+    paddingBottom: 20,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   buttonText: {
     fontSize: 18,
