@@ -45,9 +45,13 @@ const LoginScreen = () => {
       return;
     }
 
-    AsyncStorage.setItem('user', email).then(() => {
-      navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
-    });
+    AsyncStorage.setItem('user', email)
+      .then(() => {
+        navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
+      })
+      .catch(error => {
+        log.error('Error while setting user to async storage', error);
+      });
   }
 
   return (
