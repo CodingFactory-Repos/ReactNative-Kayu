@@ -101,9 +101,9 @@ const CarrotScreen = () => {
             defects={['Additifs', 'Sucre']}
             categories={product.categories}
             qualities={['Protéines', 'Fibres', 'Graisses saturées']}
-            image={product.images}
-            nutriscore_point={product.nutriscoreScore}
-            nutriscore={product.nutriescore_grade}
+            image_front_small_url={product.image_front_small_url}
+            nutriscore_score={product.nutriscore_score}
+            nutriscore_grade={product.nutriscore_grade}
           />
         )}
         <View style={styles.buttonContainer}>
