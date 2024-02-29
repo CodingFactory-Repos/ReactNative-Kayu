@@ -10,6 +10,7 @@ import {
   TabBarNavigatorParamList,
 } from './TabNavigator.interfaces.ts';
 import {Imager} from '../../../screens/imager/Imager';
+import CarrotNavigator from "../CarrotNavigator/CarrotNavigator.tsx";
 
 const Tab = createBottomTabNavigator<TabBarNavigatorParamList>();
 
@@ -40,7 +41,7 @@ const TabNavigator = () => {
       }}>
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.CARROT}
-        component={CarrotScreen}
+        component={CarrotNavigator}
         options={{
           tabBarLabel: 'Last Scan',
           tabBarIcon: ({color, size}) => (
