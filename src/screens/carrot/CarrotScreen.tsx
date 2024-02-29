@@ -28,6 +28,8 @@ const ProductItem = ({
   defects,
   qualities,
   img,
+  nutriscoreScore,
+  nutriscoreGrade,
 }: ProductItemProps) => {
   return (
     <View style={styles.card}>
@@ -37,7 +39,9 @@ const ProductItem = ({
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>
         </View>
-        <Text style={styles.badge}>{badgeText}</Text>
+        <Text style={styles.badge}>
+          {nutriscoreScore} - "{nutriscoreGrade}/100"
+        </Text>
       </View>
 
       <View style={styles.content}>

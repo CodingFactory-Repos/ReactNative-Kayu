@@ -13,6 +13,7 @@ export async function getProduct(barcode: string) {
   data.energy = json.product.nutriments.energy;
   data.energy100g = json.product.nutriments['energy-kcal_100g'];
   data.image = json.product.image_front_thumb_url;
+  data.nutriscore_point = json.product.nutriscore_score;
 
   return data;
 }
