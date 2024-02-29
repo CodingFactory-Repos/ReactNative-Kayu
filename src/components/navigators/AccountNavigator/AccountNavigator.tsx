@@ -2,13 +2,11 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Example from '../../../screens/example/example.tsx';
 import {
   ACCOUNT_NAVIGATOR_ROUTES,
   AccountNavigatorParamList,
 } from './AccountNavigator.interfaces.ts';
-import LoginScreen from '../../../screens/login/LoginScreen.tsx';
-import RegisterScreen from '../../../screens/register/RegisterScreen.tsx';
+import ProfileScreen from '../../../screens/profile/profileScreen.tsx';
 
 const Stack = createNativeStackNavigator<AccountNavigatorParamList>();
 
@@ -25,26 +23,9 @@ export default function AccountNavigator() {
         }}>
         <Stack.Screen
           name={ACCOUNT_NAVIGATOR_ROUTES.PROFILE}
-          component={Example}
+          component={ProfileScreen}
         />
       </Stack.Navigator>
     );
   }
-  return (
-    <Stack.Navigator
-      initialRouteName={ACCOUNT_NAVIGATOR_ROUTES.LOGIN}
-      screenOptions={{
-        // headerShown: false,
-        orientation: 'portrait_up',
-      }}>
-      <Stack.Screen
-        name={ACCOUNT_NAVIGATOR_ROUTES.LOGIN}
-        component={LoginScreen}
-      />
-      <Stack.Screen
-        name={ACCOUNT_NAVIGATOR_ROUTES.REGISTER}
-        component={RegisterScreen}
-      />
-    </Stack.Navigator>
-  );
 }
