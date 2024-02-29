@@ -18,6 +18,7 @@ interface ProductItemProps {
   badgeText: string;
   defects: string[];
   qualities: string[];
+  img: string;
 }
 
 const ProductItem = ({
@@ -26,11 +27,12 @@ const ProductItem = ({
   badgeText,
   defects,
   qualities,
+  img,
 }: ProductItemProps) => {
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Image style={styles.image} source={{uri: ''}} />
+        <Image style={styles.image} source={{uri: img}} />
         <View style={styles.headerText}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>
@@ -78,6 +80,7 @@ const CarrotScreen = ({route}) => {
             badgeText="4/100 Mauvais"
             defects={['Additifs', 'Sucre']}
             qualities={['Protéines', 'Fibres', 'Graisses saturées']}
+            img={product.images}
           />
         )}
         <View style={styles.buttonContainer}>
