@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -75,6 +75,10 @@ const CarrotScreen = () => {
   const handlePress = () => {
     navigation.navigate(CARROT_NAVIGATOR_ROUTES.MOCK);
   };
+
+  useEffect(() => {
+    console.log('product', product);
+  }, [product]);
 
   return (
     <SafeAreaView style={styles.screen}>
