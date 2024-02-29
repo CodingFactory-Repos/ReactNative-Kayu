@@ -11,6 +11,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 import {CARROT_NAVIGATOR_ROUTES} from '../../components/navigators/CarrotNavigator/CarrotNavigator.interfaces.ts';
+import {useSelector} from 'react-redux';
 
 interface ProductItemProps {
   title: string;
@@ -65,8 +66,9 @@ const ProductItem = ({
   );
 };
 
-const CarrotScreen = ({route}) => {
-  const {product} = route.params;
+const CarrotScreen = () => {
+  // const {product} = route.params;
+  const {product} = useSelector(state => state.product);
 
   const navigation = useNavigation();
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
@@ -7,11 +8,15 @@ import {
   useCameraPermission,
   useCodeScanner,
 } from 'react-native-vision-camera';
-import {getProduct} from '../../service/apiCall';
-import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+
+import {getProduct} from '../../service/apiCall';
+import {setProduct} from '../../service/redux/slices/productSlice';
+import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
 
 export const Imager = () => {
+  const dispatch = useDispatch();
   const {hasPermission, requestPermission} = useCameraPermission();
 
   requestPermission();
@@ -25,7 +30,8 @@ export const Imager = () => {
         if (code.type === 'ean-13') {
           getProduct(code.value).then(result => {
             console.log(`Product found : ${result.name}`);
-            navigation.navigate('CarrotScreen', {product: result});
+            dispatch(setProduct(result));
+            navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
           });
         }
       });
