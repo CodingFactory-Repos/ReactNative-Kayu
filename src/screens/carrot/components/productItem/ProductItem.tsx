@@ -15,7 +15,6 @@ const ProductItem = ({
   nutriscore_score,
 }: ProductItemProps) => {
 
-  console.log(defects);
   
   return (
     <View style={styles.card}>
