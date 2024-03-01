@@ -26,8 +26,6 @@ export const Search = () => {
   }, []);
 
   const handlePress = item => {
-    console.log(item);
-    
     setBottomSheetModalVisible(true);
     bottomSheetRef.current?.expand();
     setSelectedProduct(item);

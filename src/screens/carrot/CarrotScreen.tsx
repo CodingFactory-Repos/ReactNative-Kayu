@@ -28,60 +28,8 @@ const CarrotScreen = () => {
   useEffect(() => {
     console.log('product', productList);
   }, [productList, selectedProduct]);
-  /*
-    const fakeProductList = [
-      {
-        name: 'Carotte',
-        categories: ['Légume', 'Bio'],
-        ingredients_text: 'Carotte, eau',
-        nutriments: {
-          carbohydrates: 54,
-          proteins: 7,
-          fat: 30,
-          sugars: 100,
-          salt: 0.2,
-        },
-        image_url:
-          'https://images.openfoodfacts.net/images/products/301/762/042/2003/front_en.610.100.jpg',
-        nutriscore_score: 3,
-        nutriscore_grade: 'c',
-      },
-      {
-        name: 'Carotte',
-        categories: ['Légume', 'Bio'],
-        ingredients_text: 'Carotte, eau',
-        nutriments: {
-          carbohydrates: 54,
-          proteins: 7,
-          fat: 30,
-          sugars: 100,
-          salt: 0.2,
-        },
-        image_url:
-          'https://images.openfoodfacts.net/images/products/301/762/042/2003/front_en.610.200.jpg',
-        nutriscore_score: 3,
-        nutriscore_grade: 'c',
-      },
-      {
-        name: 'Carotte',
-        categories: ['Légume', 'Bio'],
-        ingredients_text: 'Carotte, eau',
-        nutriments: {
-          carbohydrates: 54,
-          proteins: 7,
-          fat: 30,
-          sugars: 100,
-          salt: 0.2,
-        },
-        image_url:
-          'https://images.openfoodfacts.net/images/products/301/762/042/2003/front_en.610.200.jpg',
-        nutriscore_score: 3,
-        nutriscore_grade: 'c',
-      },
-    ];
-  */
-  const renderList = product => {
 
+  const renderList = product => {
     return (
       <TouchableOpacity onPress={() => handlePress(product)}>
         <ProductItem
