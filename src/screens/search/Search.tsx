@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Text, TextInput, SafeAreaView, StyleSheet, TouchableOpacity, View, ScrollView, Image } from 'react-native';
 import { getProductByName } from '../../service/apiCall';
-import { CARROT_NAVIGATOR_ROUTES } from '../../components/navigators/CarrotNavigator/CarrotNavigator.interfaces.ts';
+import { TAB_BAR_NAVIGATOR_ROUTES } from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
 import { useDispatch } from 'react-redux';
 import { setProduct } from '../../service/redux/slices/productSlice.ts';
 
@@ -20,7 +20,7 @@ export const Search = () => {
     function goToDetail(product)
     {
         dispatch(setProduct(product));
-        navigation.navigate(CARROT_NAVIGATOR_ROUTES.MOCK);
+        navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
     }
     
     const renderProducts = () => {
