@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
@@ -38,8 +38,8 @@ export const Imager = () => {
           getProductByBarcode(code.value).then(async result => {
             console.log(`Product found : ${result.name}`);
             dispatch(setProduct(result));
-            productListToSave.push(result);
-            dispatch(addProductToList(productListToSave));
+            //productListToSave.push(result);
+            dispatch(addProductToList(result));
             await AsyncStorage.setItem(
               'productList',
               JSON.stringify(productList),
@@ -51,6 +51,10 @@ export const Imager = () => {
       });
     },
   });
+
+  useEffect(() => {
+    setIsCameraActive(true);
+  }, [isCameraActive]);
 
   const device = useCameraDevice('back', {
     physicalDevices: [
