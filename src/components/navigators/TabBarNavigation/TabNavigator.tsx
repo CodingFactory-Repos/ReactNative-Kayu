@@ -1,21 +1,16 @@
 import React, {useEffect} from 'react';
-import {ColorValue} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {
-  getFocusedRouteNameFromRoute,
-  useNavigation,
-} from '@react-navigation/native';
-
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import * as Icons from "react-native-heroicons/solid";
+import {useNavigation} from '@react-navigation/native';
+
 import AccountNavigator from '../AccountNavigator';
-import {ACCOUNT_NAVIGATOR_ROUTES} from '../AccountNavigator/AccountNavigator.interfaces.ts';
-import CarrotScreen from '../../../screens/carrot/CarrotScreen';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   TAB_BAR_NAVIGATOR_ROUTES,
   TabBarNavigatorParamList,
 } from './TabNavigator.interfaces.ts';
 import {Imager} from '../../../screens/imager/Imager';
+import CarrotNavigator from '../CarrotNavigator/CarrotNavigator.tsx';
+import {Image, Text, View} from 'react-native';
 
 const Tab = createBottomTabNavigator<TabBarNavigatorParamList>();
 
@@ -26,83 +21,102 @@ const TabNavigator = () => {
   const {navigate} = useNavigation();
 
   useEffect(() => {
-    AsyncStorage.getItem('user').then(userInfo => {
-      if (userInfo) {
-        console.log('user token', {userInfo});
-      } else {
-        console.log('user token not found');
-        // @ts-ignore
-        navigate(TAB_BAR_NAVIGATOR_ROUTES.LOGIN);
-      }
-    });
+    console.log('user token');
+    // AsyncStorage.getItem('user').then(userInfo => {
+    //   if (userInfo) {
+    //     console.log('user token', {userInfo});
+    //   } else {
+    //     console.log('user token not found');
+    //     // @ts-ignore
+    //     navigate(TAB_BAR_NAVIGATOR_ROUTES.ACCOUNT);
+    //   }
+    // });
   }, [navigate]);
 
-  const renderIcon =
-    (name: string) =>
-    // eslint-disable-next-line react/no-unstable-nested-components
-    ({color, size}: {color: ColorValue; size: number}) =>
-      <Icon name={name} color={color} size={size} />;
   return (
     <Tab.Navigator
-      initialRouteName={TAB_BAR_NAVIGATOR_ROUTES.ACCOUNT}
+      initialRouteName={TAB_BAR_NAVIGATOR_ROUTES.PLATE}
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
+        // Set logo in left side of header
+        headerLeft: () => (
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Image
+              source={require('../../../../assets/kayu.png')}
+              style={{width: 40, height: 40}}
+            />
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: 'bold',
+                color: 'black',
+              }}>
+              Kayu
+            </Text>
+          </View>
+        ),
+        headerRight: () => (
+          <Icon
+            name="camera"
+            size={25}
+            color="black"
+            style={{marginRight: 10}}
+            onPress={() => navigate(TAB_BAR_NAVIGATOR_ROUTES.QRSCAN)}
+          />
+        ),
+        headerTitle: '',
       }}>
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.CARROT}
-        component={CarrotScreen}
+        component={CarrotNavigator}
         options={{
-          tabBarIcon: renderIcon('carrot'),
+          tabBarLabel: 'Last Scan',
+          tabBarIcon: ({color, size}) => (
+            <Icons.PlusIcon color={color} size={size} />
+          ),
         }}
       />
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.PLATE}
         component={PlateScreen}
         options={{
-          tabBarIcon: renderIcon('food'),
+          tabBarLabel: 'Plats',
+          tabBarIcon: ({color, size}) => (
+            <Icons.MapIcon color={color} size={size} />
+          ),
         }}
       />
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.QRSCAN}
         component={Imager}
         options={{
-          tabBarIcon: renderIcon('qrcode-scan'),
+          tabBarLabel: 'QRScan',
+          tabBarIcon: ({color, size}) => (
+            <Icons.QrCodeIcon color={color} size={size} />
+          ),
         }}
       />
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.SEARCH}
         component={SearchScreen}
         options={{
-          tabBarIcon: renderIcon('magnify'),
+          tabBarLabel: 'Search',
+          tabBarIcon: ({color, size}) => (
+            <Icons.MagnifyingGlassIcon color={color} size={size} />
+          ),
         }}
       />
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.ACCOUNT}
         component={AccountNavigator}
-        options={({route}) => {
-          const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-          console.log(routeName);
-
-          if (routeName === ACCOUNT_NAVIGATOR_ROUTES.PROFILE) {
-            return {
-              tabBarIcon: renderIcon('account'),
-            };
-          }
-          if (
-            routeName === ACCOUNT_NAVIGATOR_ROUTES.LOGIN ||
-            routeName === ACCOUNT_NAVIGATOR_ROUTES.REGISTER
-          ) {
-            return {
-              tabBarStyle: {
-                display: 'none',
-              },
-            };
-          }
-
+        options={() => {
           return {
             tabBarStyle: {
               display: 'flex',
             },
+            tabBarIcon: ({color, size}) => (
+              <Icons.UserIcon color={color} size={size} />
+            ),
           };
         }}
       />

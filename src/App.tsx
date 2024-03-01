@@ -1,5 +1,9 @@
-import React, {useEffect} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import React, {useEffect, useRef} from 'react';
+import {
+  NavigationContainer,
+  NavigationContainerRef,
+} from '@react-navigation/native';
+
 import {useCameraPermission} from 'react-native-vision-camera';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {logger} from 'react-native-logs';
@@ -11,12 +15,22 @@ const log = logger.createLogger();
 
 const App = () => {
   const {hasPermission, requestPermission} = useCameraPermission();
+  const routeNameRef = useRef<string>();
+
+  const navigationRef =
+    // eslint-disable-next-line no-undef
+    useRef<NavigationContainerRef<ReactNavigation.RootParamList>>(null);
 
   useEffect(() => {
     if (!hasPermission) {
       requestPermission().then(r => console.log('requested permission', r));
     }
   }, [hasPermission, requestPermission]);
+
+  const onReady = () => {
+    routeNameRef.current =
+      navigationRef.current?.getCurrentRoute?.()?.name ?? 'UNKNOWN';
+  };
 
   useEffect(() => {
     AsyncStorage.getItem('user').then(user => {
@@ -31,7 +45,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer onReady={onReady} ref={navigationRef}>
         <RootNavigator />
       </NavigationContainer>
     </Provider>

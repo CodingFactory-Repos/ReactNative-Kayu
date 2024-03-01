@@ -1,6 +1,14 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, ScrollView} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import NutritionInfo from './NutritionInfo';
+import {CARROT_NAVIGATOR_ROUTES} from '../../../components/navigators/CarrotNavigator/CarrotNavigator.interfaces.ts';
 
 const fakeApiData = {
   product_name: 'Ourson Chocolat',
@@ -17,9 +25,14 @@ const fakeApiData = {
 };
 
 const App = () => {
+  const {goBack} = useNavigation();
+
   return (
     <SafeAreaView style={styles.screen}>
       <ScrollView contentContainerStyle={styles.content}>
+        <TouchableOpacity onPress={() => goBack()}>
+          <Text>Go back</Text>
+        </TouchableOpacity>
         <NutritionInfo data={fakeApiData} />
       </ScrollView>
     </SafeAreaView>
