@@ -48,14 +48,17 @@ export async function getProductByName(productName: string)
 
     if(alreadyPresent) continue;
 
-    object.name = rawJson.products[i].product_name;
-    object.nutriscore = rawJson.products[i].nutriscore_grade;
-    object.categories = rawJson.products[i].categories;
-    object.nutriments = rawJson.products[i].nutriments;
-    object.energy = rawJson.products[i].nutriments.energy;
-    object.energy100g = rawJson.products[i].nutriments['energy-kcal_100g'];
-    object.image = rawJson.products[i].image_front_thumb_url;
-    object.nutriscore_point = rawJson.products[i].nutriscore_score;
+    data.name = rawJson.products[i].product_name;
+    data.categories = rawJson.products[i].categories;
+    data.nutriments = rawJson.products[i].nutriments;
+    data.energy = rawJson.products[i].nutriments.energy;
+    data.energy100g = rawJson.products[i].nutriments['energy-kcal_100g'];
+    data.positive_nutrients = rawJson.products[i].nutriscore['2023'].positive_nutrients;
+    data.negative_nutrients = rawJson.products[i].nutriscore['2023'].negative_nutrients;
+    data.nutriscore_score = rawJson.products[i].nutriscore_score;
+    data.nutriscore_grade = rawJson.products[i].nutriscore_grade;
+    data.image = rawJson.products[i].image_front_thumb_url;
+
     data.push(object);
   }
 
