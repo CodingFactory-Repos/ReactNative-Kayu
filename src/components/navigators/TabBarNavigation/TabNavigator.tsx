@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import AccountNavigator from '../AccountNavigator';
 import CarrotScreen from '../../../screens/carrot/CarrotScreen';
@@ -11,10 +11,11 @@ import {
 } from './TabNavigator.interfaces.ts';
 import {Imager} from '../../../screens/imager/Imager';
 import {Image, Text, View} from 'react-native';
+import PlateScreen from '../../../screens/plate/PlateScreen.tsx';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator<TabBarNavigatorParamList>();
 
-const PlateScreen = () => null;
 const SearchScreen = () => null;
 
 const TabNavigator = () => {
