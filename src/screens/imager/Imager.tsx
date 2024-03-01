@@ -12,6 +12,7 @@ import {
 import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import productItem from '../carrot/components/productItem/ProductItem.tsx';
+import { getProductByBarcode } from "../../../../../../../../../Documents/GitHub/ReactNative-Kayu/src/service/apiCall";
 
 export const Imager = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ export const Imager = () => {
     onCodeScanned: codes => {
       codes.forEach(code => {
         if (code.type === 'ean-13') {
-          getProductByName(code.value).then(async result => {
+          getProductByBarcode(code.value).then(async result => {
             console.log(`Product found : ${result.name}`);
             dispatch(setProduct(result));
             dispatch(addProductToList(result));

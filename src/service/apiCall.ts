@@ -6,9 +6,8 @@ export async function getProductByBarcode(barcode: string) {
   await fetch(`${apiUrlBarcode}product/${barcode}`)
     .then(response => response.json())
     .then(json => rawJson = json);
-console.log(rawJson);
   data.code = rawJson.code;
-  data.name = rawJson.product_name;
+  data.name = rawJson.product.product_name;
   data.categories = rawJson.product.categories;
   data.nutriments = rawJson.product.nutriments;
   data.energy = rawJson.product.nutriments.energy;
