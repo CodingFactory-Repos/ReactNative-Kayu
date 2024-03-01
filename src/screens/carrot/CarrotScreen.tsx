@@ -1,20 +1,16 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {
-  FlatList,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+import {FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 
 import ProductItem from './components/productItem/ProductItem.tsx';
 import {styles} from './CarrotScreen.styles.ts';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import NutritionInfo from './components/NutritionInfo.tsx';
+import {setProductSearch} from '../../service/redux/slices/productSlice.ts';
 
 const CarrotScreen = () => {
-  const {productList} = useSelector(state => state.product);
+  const dispatch = useDispatch();
+  const {productList, productSearch} = useSelector(state => state.product);
   const [isBottomSheetModalVisible, setBottomSheetModalVisible] =
     useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -23,6 +19,7 @@ const CarrotScreen = () => {
   // callbacks
   const handleSheetChanges = useCallback((index: number) => {
     if (index === -1) setBottomSheetModalVisible(false);
+    dispatch(setProductSearch({}));
   }, []);
 
   const handlePress = item => {
@@ -34,6 +31,14 @@ const CarrotScreen = () => {
   useEffect(() => {
     console.log('product', productList);
   }, [productList, selectedProduct]);
+
+  useEffect(() => {
+    if (productSearch) {
+      setSelectedProduct(productSearch);
+      setBottomSheetModalVisible(true);
+      bottomSheetRef.current?.expand();
+    }
+  }, [productSearch]);
 
   const fakeProductList = [
     {

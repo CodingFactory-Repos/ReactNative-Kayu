@@ -16,7 +16,8 @@ export async function getProductByBarcode(barcode: string) {
   data.negative_nutrients = rawJson.product.nutriscore['2023'].negative_nutrients;
   data.nutriscore_score = rawJson.product.nutriscore_score;
   data.nutriscore_grade = rawJson.product.nutriscore_grade;
-
+  data.image = rawJson.product.image_front_thumb_url;
+  
   return data;
 }
 
