@@ -1,37 +1,24 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import * as Icons from "react-native-heroicons/solid";
 import {useNavigation} from '@react-navigation/native';
-
 import AccountNavigator from '../AccountNavigator';
 import {
   TAB_BAR_NAVIGATOR_ROUTES,
   TabBarNavigatorParamList,
 } from './TabNavigator.interfaces.ts';
-import {Imager} from '../../../screens/imager/Imager';
+import { Imager } from '../../../screens/imager/Imager';
+import { Search } from '../../../screens/search/Search.tsx';
 import CarrotNavigator from '../CarrotNavigator/CarrotNavigator.tsx';
 import {Image, Text, View} from 'react-native';
+import PlateScreen from '../../../screens/plate/PlateScreen.tsx';
+import * as Icons from "react-native-heroicons/solid";
 
 const Tab = createBottomTabNavigator<TabBarNavigatorParamList>();
 
-const PlateScreen = () => null;
 const SearchScreen = () => null;
 
 const TabNavigator = () => {
   const {navigate} = useNavigation();
-
-  useEffect(() => {
-    console.log('user token');
-    // AsyncStorage.getItem('user').then(userInfo => {
-    //   if (userInfo) {
-    //     console.log('user token', {userInfo});
-    //   } else {
-    //     console.log('user token not found');
-    //     // @ts-ignore
-    //     navigate(TAB_BAR_NAVIGATOR_ROUTES.ACCOUNT);
-    //   }
-    // });
-  }, [navigate]);
 
   return (
     <Tab.Navigator
@@ -56,8 +43,7 @@ const TabNavigator = () => {
           </View>
         ),
         headerRight: () => (
-          <Icon
-            name="camera"
+          <Icons.CameraIcon
             size={25}
             color="black"
             style={{marginRight: 10}}
@@ -98,7 +84,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.SEARCH}
-        component={SearchScreen}
+        component={Search}
         options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({color, size}) => (
