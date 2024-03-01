@@ -26,7 +26,7 @@ const CarrotScreen = () => {
   };
 
   useEffect(() => {
-    // console.log('product', productList);
+    console.log('product', productList);
   }, [productList, selectedProduct]);
   /*
     const fakeProductList = [

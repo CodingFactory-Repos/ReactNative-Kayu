@@ -31,7 +31,7 @@ const RootNavigator = () => {
     if (isLogged) {
       AsyncStorage.getItem('productList').then(productList => {
         if (productList) {
-          console.log('productList', productList);
+          // console.log('productList', productList);
           dispatch(setProductList(JSON.parse(productList)));
         }
       });

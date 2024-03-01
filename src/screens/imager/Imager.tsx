@@ -16,8 +16,10 @@ import {
 import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getProductByBarcode} from '../../service/apiCall';
+import { fakeBaseQuery } from '@reduxjs/toolkit/query';
 
 export const Imager = () => {
+  var busy = false;
   const dispatch = useDispatch();
   const [isCameraActive, setIsCameraActive] = useState(true);
   const {hasPermission, requestPermission} = useCameraPermission();
@@ -32,23 +34,28 @@ export const Imager = () => {
   const codeScanner = useCodeScanner({
     codeTypes: ['qr', 'ean-13'],
     onCodeScanned: codes => {
-      codes.forEach(code => {
-        if (code.type === 'ean-13') {
-          setIsCameraActive(false);
-          getProductByBarcode(code.value).then(async result => {
+      if (codes[0].type === 'ean-13') {
+        // setIsCameraActive(false);
+        if (!busy)
+        {
+          busy = true;
+          console.log(`Searching barcode ${codes[0].value}...`);
+          
+          getProductByBarcode(codes[0].value).then(async result => {
             console.log(`Product found : ${result.name}`);
             dispatch(setProduct(result));
-            //productListToSave.push(result);
+            // productListToSave.push(result);
             dispatch(addProductToList(result));
             await AsyncStorage.setItem(
               'productList',
               JSON.stringify(productList),
             );
             // @ts-ignore
+            busy = false;
             navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
           });
         }
-      });
+      }
     },
   });
 
