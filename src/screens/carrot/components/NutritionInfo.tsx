@@ -18,7 +18,7 @@ const NutritionInfo = ({data}) => {
       {item ? (
         <View style={styles.container}>
           <View style={styles.upperPartContainer}>
-            <Image style={styles.image} source={{uri: image}} />
+            <Image style={styles.image} source={{uri: item.image}} />
             <Text style={styles.title}>{item.name}</Text>
           </View>
           <View style={styles.subtitle}>

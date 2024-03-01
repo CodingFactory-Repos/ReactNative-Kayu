@@ -34,8 +34,8 @@ const CarrotScreen = () => {
       <TouchableOpacity onPress={() => handlePress(product)}>
         <ProductItem
           title={product.item.name ?? product.name}
-          subtitle="Blablatest"
-          badgeText="4/100 Mauvais"
+          subtitle={product.categories}
+          badgeText={product.nutriscore_score}
           defects={
             product.item.negative_nutrients ?? product.negative_nutrients
           }

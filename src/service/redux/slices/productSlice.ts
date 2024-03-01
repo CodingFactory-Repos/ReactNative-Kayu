@@ -3,32 +3,15 @@ import {createSlice} from '@reduxjs/toolkit';
 export const productSlice = createSlice({
   name: 'product',
   initialState: {
-    productList: [
-      {
-        name: 'Carotte',
-        categories: ['Légume', 'Bio'],
-        ingredients_text: 'Carotte, eau',
-        nutriments: {
-          carbohydrates: 54,
-          proteins: 7,
-          fat: 30,
-          sugars: 100,
-          salt: 0.2,
-        },
-        image_url:
-          'https://images.openfoodfacts.net/images/products/301/762/042/2003/front_en.610.100.jpg',
-        nutriscore_score: 3,
-        nutriscore_grade: 'c',
-        positive_nutrients: ['vitamin C', 'fiber'],
-        negative_nutrients: ['sugar'],
-      },
-    ],
+    productList: [],
     product: {},
     productSearch: {},
   },
   reducers: {
     addProductToList: (state, action) => {
-      state.productList.push(action.payload);
+      // state.productList.push(action.payload);
+      // Push on the top of the list
+      state.productList = [action.payload, ...state.productList];
     },
     setProductList: (state, action) => {
       state.productList = action.payload;
@@ -39,10 +22,20 @@ export const productSlice = createSlice({
     setProductSearch: (state, action) => {
       state.productSearch = action.payload;
     },
+    removeProductFromList: (state, action) => {
+      state.productList = state.productList.filter(
+        product => product.name !== action.payload.name,
+      );
+    },
   },
 });
 
-export const {addProductToList, setProduct, setProductList, setProductSearch} =
-  productSlice.actions;
+export const {
+  removeProductFromList,
+  addProductToList,
+  setProduct,
+  setProductList,
+  setProductSearch,
+} = productSlice.actions;
 
 export default productSlice.reducer;

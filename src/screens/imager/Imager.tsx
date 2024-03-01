@@ -11,12 +11,12 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   addProductToList,
+  removeProductFromList,
   setProduct,
 } from '../../service/redux/slices/productSlice';
 import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getProductByBarcode} from '../../service/apiCall';
-import { fakeBaseQuery } from '@reduxjs/toolkit/query';
 
 export const Imager = () => {
   var busy = false;
@@ -29,31 +29,34 @@ export const Imager = () => {
   const navigation = useNavigation();
 
   const {productList} = useSelector(state => state.product);
-  let productListToSave = productList;
 
   const codeScanner = useCodeScanner({
     codeTypes: ['qr', 'ean-13'],
     onCodeScanned: codes => {
       if (codes[0].type === 'ean-13') {
-        // setIsCameraActive(false);
-        if (!busy)
-        {
+        if (!busy) {
           busy = true;
           console.log(`Searching barcode ${codes[0].value}...`);
-          
-          getProductByBarcode(codes[0].value).then(async result => {
-            if(!result) return;
+
+          getProductByBarcode(codes[0].value).then(result => {
+            if (!result) return;
             console.log(`Product found : ${result.name}`);
             dispatch(setProduct(result));
-            // productListToSave.push(result);
+            if (productList.find(product => product.name === result.name)) {
+              console.log('Product already in list');
+
+              // Remove product from list if already in list and add it again on top
+              dispatch(removeProductFromList(result));
+            } else {
+              AsyncStorage.setItem('productList', JSON.stringify(productList));
+            }
+
+            // Add product to list if not already in list
             dispatch(addProductToList(result));
-            await AsyncStorage.setItem(
-              'productList',
-              JSON.stringify(productList),
-            );
+
             // @ts-ignore
-            busy = false;
             navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
+            busy = false;
           });
         }
       }
