@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 
 import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
@@ -8,7 +8,6 @@ const PlateScreen = () => {
   const bottomSheetRef = useRef<BottomSheet>(null);
   const [isBottomSheetModalVisible, setBottomSheetModalVisible] =
     useState(false);
-  useEffect(() => {}, []);
 
   function openModal() {
     console.log('open modal');

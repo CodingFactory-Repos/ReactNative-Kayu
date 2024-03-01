@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, {useCallback, useRef, useState} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -11,24 +10,30 @@ import {
   View,
 } from 'react-native';
 import {getProductByName} from '../../service/apiCall';
-import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
-import {useDispatch} from 'react-redux';
-import {setProductSearch} from '../../service/redux/slices/productSlice.ts';
+import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
+import NutritionInfo from '../carrot/components/NutritionInfo.tsx';
 
 export const Search = () => {
   const [query, setQuery] = useState('');
   const [products, setProducts] = useState([]);
-  const navigation = useNavigation();
-  const dispatch = useDispatch();
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isBottomSheetModalVisible, setBottomSheetModalVisible] =
+    useState(false);
+  const bottomSheetRef = useRef<BottomSheet>(null);
+
+  const handleSheetChanges = useCallback((index: number) => {
+    if (index === -1) setBottomSheetModalVisible(false);
+  }, []);
+
+  const handlePress = item => {
+    setBottomSheetModalVisible(true);
+    bottomSheetRef.current?.expand();
+    setSelectedProduct(item);
+  };
 
   async function searchForProduct(productName: string) {
     let products = await getProductByName(productName);
     setProducts(products);
-  }
-
-  function goToDetail(product) {
-    dispatch(setProductSearch(product));
-    navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
   }
 
   const renderProducts = () => {
@@ -36,7 +41,7 @@ export const Search = () => {
       <TouchableOpacity
         key={index}
         style={styles.card}
-        onPress={() => goToDetail(product)}>
+        onPress={() => handlePress(product)}>
         <View style={styles.header}>
           <Image style={styles.image} source={{uri: product.image}} />
           <View style={styles.headerText}>
@@ -70,6 +75,19 @@ export const Search = () => {
         <Text style={styles.buttonText}>Search</Text>
       </TouchableOpacity>
       <ScrollView>{renderProducts()}</ScrollView>
+
+      {isBottomSheetModalVisible && (
+        <BottomSheet
+          ref={bottomSheetRef}
+          onChange={handleSheetChanges}
+          snapPoints={['50%', '80%']}
+          enablePanDownToClose={true}
+          style={styles.bottomModal}>
+          <BottomSheetView>
+            <NutritionInfo data={selectedProduct} />
+          </BottomSheetView>
+        </BottomSheet>
+      )}
     </SafeAreaView>
   );
 };
@@ -138,6 +156,11 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 4,
     fontSize: 12,
+  },
+  bottomModal: {
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: 'lightgrey',
   },
 });
 

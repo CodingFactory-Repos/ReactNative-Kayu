@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 
 const NutritionInfo = ({data}) => {
   console.log('data', data);
@@ -18,10 +18,7 @@ const NutritionInfo = ({data}) => {
   return (
     <View style={styles.container}>
       <View style={styles.upperPartContainer}>
-        <Image
-          style={styles.image}
-          source={{uri: image}}
-        />
+        <Image style={styles.image} source={{uri: image}} />
         <Text style={styles.title}>{name}</Text>
       </View>
       <View style={styles.subtitle}>
@@ -30,22 +27,15 @@ const NutritionInfo = ({data}) => {
       </View>
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Informations Nutritionnelles:</Text>
-        <Text>
-          Carbohydrates:{' '}
-          {nutriments?.carbohydrates}g
-        </Text>
-        <Text>
-          Protéines: {nutriments?.proteins}g
-        </Text>
+        <Text>Carbohydrates: {nutriments?.carbohydrates}g</Text>
+        <Text>Protéines: {nutriments?.proteins}g</Text>
         <Text>Graisses: {nutriments?.fat}g</Text>
         <Text>Sucres: {nutriments?.sugars}g</Text>
         <Text>Sel: {nutriments?.salt}g</Text>
       </View>
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Scores:</Text>
-        <Text>
-          Eco-Score: {nutriscore_score} / 100
-        </Text>
+        <Text>Eco-Score: {nutriscore_score} / 100</Text>
         <Text>Nutri-Score: {nutriscore_grade}</Text>
       </View>
     </View>
