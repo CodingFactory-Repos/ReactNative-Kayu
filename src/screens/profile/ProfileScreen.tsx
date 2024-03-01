@@ -1,7 +1,5 @@
 import React, {useEffect} from 'react';
-import {Image, View, Text} from 'react-native';
-
-import {styles} from './ProfileScreen.styles.ts';
+import {Text, View} from 'react-native';
 import {useSelector} from 'react-redux';
 
 const ProfileScreen = () => {
@@ -14,17 +12,18 @@ const ProfileScreen = () => {
   }, [user]);
 
   return (
-    <View>
-      <Text>Profile Screen</Text>
-      <Image
-        source={require('../../../assets/kayu.png')}
-        style={styles.image}
-      />
-      <Text>Bonjour {user?.email}</Text>
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text
+        style={{
+          fontSize: 30,
+          fontWeight: 'bold',
+          textAlign: 'center',
+          marginTop: 20,
+        }}>
+        Bonjour {user?.email}
+      </Text>
       <View>
-        <Text>Information : </Text>
-        <Text>Email: {user?.email}</Text>
-        {/*<Text> Password : {user?.password} </Text>*/}
+        <Text style={{marginTop: 20}}>Email: {user?.email}</Text>
       </View>
     </View>
   );
