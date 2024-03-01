@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 
 import {Text, TouchableOpacity, View} from 'react-native';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
+import {Colors} from '../../utils/colors.ts';
 
 const PlateScreen = () => {
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -18,22 +19,51 @@ const PlateScreen = () => {
     if (index === -1) setBottomSheetModalVisible(false);
   }, []);
 
+  function getBottomSheetContent() {
+    return (
+      <BottomSheet
+        ref={bottomSheetRef}
+        onChange={handleSheetChanges}
+        snapPoints={['95%', '20%']}
+        enablePanDownToClose={true}>
+        <BottomSheetView style={{flex: 1}}>
+          <View
+            style={{
+              flex: 1,
+              alignItems: 'center',
+            }}>
+            <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+              Ajouter un Repas
+            </Text>
+          </View>
+        </BottomSheetView>
+      </BottomSheet>
+    );
+  }
+
   return (
     <View style={{flex: 1}}>
-      <TouchableOpacity onPress={() => openModal()}>
-        <Text>Open modal</Text>
-      </TouchableOpacity>
-      {isBottomSheetModalVisible && (
-        <BottomSheet
-          ref={bottomSheetRef}
-          onChange={handleSheetChanges}
-          snapPoints={['20%', '100%']}
-          enablePanDownToClose={true}>
-          <BottomSheetView>
-            <Text>Swipe down to close</Text>
-          </BottomSheetView>
-        </BottomSheet>
-      )}
+      <View style={{flex: 1, justifyContent: 'space-between'}}>
+        <View>
+          <Text>Plate Screen</Text>
+        </View>
+
+        <TouchableOpacity
+          onPress={() => openModal()}
+          style={{
+            margin: 20,
+            padding: 10,
+            alignItems: 'center',
+            backgroundColor: Colors.primary,
+            width: '50%',
+            alignSelf: 'center',
+            borderRadius: 10,
+          }}>
+          <Text style={{color: 'white'}}>+ Ajouter un repas</Text>
+        </TouchableOpacity>
+      </View>
+
+      {isBottomSheetModalVisible && getBottomSheetContent()}
     </View>
   );
 };
