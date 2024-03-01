@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import {Colors} from '../../utils/colors.ts';
 
@@ -35,6 +35,33 @@ const PlateScreen = () => {
             <Text style={{fontSize: 20, fontWeight: 'bold'}}>
               Ajouter un Repas
             </Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+            }}>
+            <TextInput
+              style={{
+                height: 40,
+                borderColor: 'gray',
+                borderWidth: 1,
+                padding: 10,
+                margin: 10,
+                borderRadius: 10,
+              }}
+              placeholder="Nom du repas"
+            />
+            <TextInput
+              style={{
+                height: 40,
+                borderColor: 'gray',
+                borderWidth: 1,
+                padding: 10,
+                margin: 10,
+                borderRadius: 10,
+              }}
+              placeholder="Description"
+            />
           </View>
         </BottomSheetView>
       </BottomSheet>
