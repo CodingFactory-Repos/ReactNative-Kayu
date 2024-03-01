@@ -41,7 +41,7 @@ export const Search = () => {
   const renderProducts = () => {
     return products.map((product, index) => (
       <TouchableOpacity
-        key={index}
+        key={product.id}
         style={styles.card}
         onPress={() => handlePress(product)}>
         <View style={styles.header}>
