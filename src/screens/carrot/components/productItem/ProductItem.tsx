@@ -14,8 +14,6 @@ const ProductItem = ({
   nutriscore_grade,
   nutriscore_score,
 }: ProductItemProps) => {
-
-  
   return (
     <View style={styles.card}>
       <View style={styles.header}>

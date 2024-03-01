@@ -6,16 +6,14 @@ import {
   TAB_BAR_NAVIGATOR_ROUTES,
   TabBarNavigatorParamList,
 } from './TabNavigator.interfaces.ts';
-import { Imager } from '../../../screens/imager/Imager';
-import { Search } from '../../../screens/search/Search.tsx';
+import {Imager} from '../../../screens/imager/Imager';
+import {Search} from '../../../screens/search/Search.tsx';
 import CarrotNavigator from '../CarrotNavigator/CarrotNavigator.tsx';
 import {Image, Text, View} from 'react-native';
 import PlateScreen from '../../../screens/plate/PlateScreen.tsx';
-import * as Icons from "react-native-heroicons/solid";
+import * as Icons from 'react-native-heroicons/solid';
 
 const Tab = createBottomTabNavigator<TabBarNavigatorParamList>();
-
-const SearchScreen = () => null;
 
 const TabNavigator = () => {
   const {navigate} = useNavigation();

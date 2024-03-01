@@ -63,7 +63,7 @@ export const Search = () => {
         style={styles.input}
         onChangeText={text => {
           setQuery(text);
-          if (text == '') setProducts([]);
+          if (text === '') setProducts([]);
         }}
       />
       <TouchableOpacity

@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import NutritionInfo from './NutritionInfo';
-import { CARROT_NAVIGATOR_ROUTES } from '../../../components/navigators/CarrotNavigator/CarrotNavigator.interfaces.ts';
-import { useSelector } from 'react-redux';
+import {CARROT_NAVIGATOR_ROUTES} from '../../../components/navigators/CarrotNavigator/CarrotNavigator.interfaces.ts';
+import {useSelector} from 'react-redux';
 
 const fakeApiData = {
   image_url: 'https://fakeimg.pl/300/',
