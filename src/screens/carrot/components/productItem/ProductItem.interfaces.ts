@@ -10,6 +10,7 @@ export interface ProductItemProps {
     sugars: number;
     salt: number;
   };
+  ingredients_text: string;
   categories: string;
   qualities: string[];
   image_front_small_url: string;

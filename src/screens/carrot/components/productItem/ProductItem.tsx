@@ -8,8 +8,6 @@ import {ProductItemProps} from './ProductItem.interfaces.ts';
 const ProductItem = ({
   title,
   subtitle,
-  badgeText,
-  categories,
   defects,
   qualities,
   image_front_small_url,

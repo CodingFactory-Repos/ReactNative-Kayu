@@ -12,10 +12,8 @@ import ProductItem from './components/productItem/ProductItem.tsx';
 import {styles} from './CarrotScreen.styles.ts';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import NutritionInfo from './components/NutritionInfo.tsx';
-import {setProduct} from '../../service/redux/slices/productSlice.ts';
 
 const CarrotScreen = () => {
-  const dispatch = useDispatch();
   const {productList} = useSelector(state => state.product);
   const [isBottomSheetModalVisible, setBottomSheetModalVisible] =
     useState(false);
@@ -35,12 +33,13 @@ const CarrotScreen = () => {
 
   useEffect(() => {
     console.log('product', productList);
-  }, [productList]);
+  }, [productList, selectedProduct]);
 
   const fakeProductList = [
     {
       name: 'Carotte',
       categories: ['Légume', 'Bio'],
+      ingredients_text: 'Carotte, eau',
       nutriments: {
         carbohydrates: 54,
         proteins: 7,
@@ -49,13 +48,14 @@ const CarrotScreen = () => {
         salt: 0.2,
       },
       image_front_small_url:
-        'https://static.openfoodfacts.org/images/products/327/655/000/5003/front_fr.3.200.jpg',
+        'https://images.openfoodfacts.net/images/products/301/762/042/2003/front_en.610.100.jpg',
       nutriscore_score: 3,
       nutriscore_grade: 'c',
     },
     {
       name: 'Carotte',
       categories: ['Légume', 'Bio'],
+      ingredients_text: 'Carotte, eau',
       nutriments: {
         carbohydrates: 54,
         proteins: 7,
@@ -64,13 +64,14 @@ const CarrotScreen = () => {
         salt: 0.2,
       },
       image_front_small_url:
-        'https://static.openfoodfacts.org/images/products/327/655/000/5003/front_fr.3.200.jpg',
+        'https://images.openfoodfacts.net/images/products/301/762/042/2003/front_en.610.200.jpg',
       nutriscore_score: 3,
       nutriscore_grade: 'c',
     },
     {
       name: 'Carotte',
       categories: ['Légume', 'Bio'],
+      ingredients_text: 'Carotte, eau',
       nutriments: {
         carbohydrates: 54,
         proteins: 7,
@@ -79,7 +80,7 @@ const CarrotScreen = () => {
         salt: 0.2,
       },
       image_front_small_url:
-        'https://static.openfoodfacts.org/images/products/327/655/000/5003/front_fr.3.200.jpg',
+        'https://images.openfoodfacts.net/images/products/301/762/042/2003/front_en.610.200.jpg',
       nutriscore_score: 3,
       nutriscore_grade: 'c',
     },
@@ -94,6 +95,9 @@ const CarrotScreen = () => {
           badgeText="4/100 Mauvais"
           defects={['Additifs', 'Sucre']}
           categories={product.item.categories ?? product.categories}
+          ingredients_text={
+            product.item.ingredients_text ?? product.ingredients_text
+          }
           nutriments={product.item.nutriments ?? product.nutriments}
           qualities={['Protéines', 'Fibres', 'Graisses saturées']}
           image_front_small_url={
@@ -125,16 +129,11 @@ const CarrotScreen = () => {
           keyExtractor={(item, index) => index.toString()}
         />
       )}
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => handlePress()}>
-          <Text style={styles.buttonText}>Détails</Text>
-        </TouchableOpacity>
-      </View>
       {isBottomSheetModalVisible && (
         <BottomSheet
           ref={bottomSheetRef}
           onChange={handleSheetChanges}
-          snapPoints={['50%']}
+          snapPoints={['50%', '80%']}
           enablePanDownToClose={true}
           style={styles.bottomModal}>
           <BottomSheetView>

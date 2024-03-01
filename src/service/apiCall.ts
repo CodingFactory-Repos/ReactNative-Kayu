@@ -16,6 +16,7 @@ export async function getProduct(barcode: string) {
   data.name = json.product.product_name;
   data.categories = json.product.categories;
   data.nutriments = json.product.nutriments;
+  data.ingredients_text = json.product.ingredients_text_fr;
   data.energy = json.product.nutriments.energy;
   data.energy100g = json.product.nutriments['energy-kcal_100g'];
   data.positive_nutrients = json.product.nutriscore['2023'].positive_nutrients;
