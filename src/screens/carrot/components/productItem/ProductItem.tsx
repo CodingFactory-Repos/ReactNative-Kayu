@@ -8,18 +8,18 @@ import {ProductItemProps} from './ProductItem.interfaces.ts';
 const ProductItem = ({
   title,
   subtitle,
-  badgeText,
-  categories,
   defects,
   qualities,
-  image_front_small_url,
+  image,
   nutriscore_grade,
   nutriscore_score,
 }: ProductItemProps) => {
+
+  
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Image style={styles.image} source={{uri: image_front_small_url}} />
+        <Image style={styles.image} source={{uri: image}} />
         <View style={styles.headerText}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>
@@ -31,12 +31,12 @@ const ProductItem = ({
 
       <View style={styles.content}>
         <Text style={styles.sectionTitle}>Défauts</Text>
-        {defects.map((defect, index) => (
+        {/* {defects.map((defect, index) => (
           <View key={index} style={styles.listItem}>
             <Icon name="circle" size={10} color="#EF4444" />
             <Text style={styles.listText}>{defect}</Text>
           </View>
-        ))}
+        ))} */}
 
         <Text style={styles.sectionTitle}>Qualités</Text>
         {qualities.map((quality, index) => (

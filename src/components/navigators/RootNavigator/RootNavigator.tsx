@@ -10,6 +10,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AuthStackNavigator from '../AuthNavigator/AuthStackNavigator.tsx';
 import {login} from '../../../service/redux/slices/userSlice.ts';
+import {setProductList} from '../../../service/redux/slices/productSlice.ts';
 
 const RootStack = createNativeStackNavigator<RootNavigatorInterfaces>();
 
@@ -27,7 +28,15 @@ const RootNavigator = () => {
         dispatch(login({email: user}));
       }
     });
-  }, [isLogged, setIsLogged]);
+    if (isLogged) {
+      AsyncStorage.getItem('productList').then(productList => {
+        if (productList) {
+          // console.log('productList', productList);
+          dispatch(setProductList(JSON.parse(productList)));
+        }
+      });
+    }
+  }, [dispatch, isLogged, setIsLogged]);
 
   useEffect(() => {
     if (isAuth) {

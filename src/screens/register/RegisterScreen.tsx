@@ -12,17 +12,19 @@ import {useNavigation} from '@react-navigation/native';
 import {ACCOUNT_NAVIGATOR_ROUTES} from '../../components/navigators/AccountNavigator/AccountNavigator.interfaces.ts';
 import {logger} from 'react-native-logs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
 import {
   validateEmail,
   validateName,
   validatePassword,
   validateSurname,
 } from '../../utils/validationUtils.ts';
+import {login} from '../../service/redux/slices/userSlice.ts';
+import {useDispatch} from 'react-redux';
 
 const RegisterScreen = () => {
   const log = logger.createLogger();
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
@@ -60,9 +62,14 @@ const RegisterScreen = () => {
       return;
     }
 
-    AsyncStorage.setItem('user', email).then(() => {
-      navigation.navigate(TAB_BAR_NAVIGATOR_ROUTES.CARROT);
-    });
+    AsyncStorage.setItem('user', email)
+      .then(() => {
+        log.info('User set to async storage');
+        dispatch(login({email, password}));
+      })
+      .catch(error => {
+        log.error('Error while setting user to async storage', error);
+      });
   }
 
   return (
