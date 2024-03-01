@@ -4,7 +4,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import { Camera, useCameraDevice, useCameraFormat, useCameraPermission, useCodeScanner } from 'react-native-vision-camera';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import {getProduct} from '../../service/apiCall';
+import { getProductByName } from "../../service/apiCall";
 import {
   addProductToList,
   setProduct,
@@ -28,7 +28,7 @@ export const Imager = () => {
     onCodeScanned: codes => {
       codes.forEach(code => {
         if (code.type === 'ean-13') {
-          getProduct(code.value).then(async result => {
+          getProductByName(code.value).then(async result => {
             console.log(`Product found : ${result.name}`);
             dispatch(setProduct(result));
             dispatch(addProductToList(result));
