@@ -34,26 +34,20 @@ export const Imager = () => {
 
   const device = useCameraDevice('back', {
     physicalDevices: [
-      'ultra-wide-angle-camera',
       'wide-angle-camera',
-      'telephoto-camera',
-    ],
+      'ultra-wide-angle-camera',
+      'telephoto-camera'
+    ]
   });
 
   if (!device) return <NoCameraDeviceError />;
   else {
-    const format = useCameraFormat(device, [
-      {videoAspectRatio: 3 / 4},
-      {fps: 120},
-      {videoStabilizationMode: 'cinematic-extended'},
-    ]);
 
     if (hasPermission) {
       return (
         <Camera
-          style={StyleSheet.absoluteFill}
+          style={{flex: 1, aspectRatio: 16/9, height: '70%'}}
           device={device}
-          format={format}
           codeScanner={codeScanner}
           isActive={true}
         />
