@@ -42,8 +42,7 @@ const TabNavigator = () => {
           </View>
         ),
         headerRight: () => (
-          <Icons
-            name="camera"
+          <Icons.CameraIcon
             size={25}
             color="black"
             style={{marginRight: 10}}
