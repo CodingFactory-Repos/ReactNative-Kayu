@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import NutritionInfo from './NutritionInfo';
+import { CARROT_NAVIGATOR_ROUTES } from '../../../components/navigators/CarrotNavigator/CarrotNavigator.interfaces.ts';
+import { useSelector } from 'react-redux';
 
 const fakeApiData = {
   image_url: 'https://fakeimg.pl/300/',
@@ -23,8 +25,8 @@ const fakeApiData = {
   nutriscore_score: 75,
   nutriscore_grade: 'B',
 };
-
 const App = () => {
+  const {product} = useSelector(state => state.product);
   const {goBack} = useNavigation();
 
   return (
@@ -33,7 +35,8 @@ const App = () => {
         <TouchableOpacity onPress={() => goBack()}>
           <Text>Go back</Text>
         </TouchableOpacity>
-        <NutritionInfo data={fakeApiData} />
+        {/* <NutritionInfo data={fakeApiData} /> */}
+        <NutritionInfo data={product} />
       </ScrollView>
     </SafeAreaView>
   );
