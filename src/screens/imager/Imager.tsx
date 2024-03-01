@@ -4,7 +4,6 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import { Camera, useCameraDevice, useCameraFormat, useCameraPermission, useCodeScanner } from 'react-native-vision-camera';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import { getProductByName } from "../../service/apiCall";
 import {
   addProductToList,
   setProduct,
@@ -12,7 +11,7 @@ import {
 import {TAB_BAR_NAVIGATOR_ROUTES} from '../../components/navigators/TabBarNavigation/TabNavigator.interfaces.ts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import productItem from '../carrot/components/productItem/ProductItem.tsx';
-import { getProductByBarcode } from "../../../../../../../../../Documents/GitHub/ReactNative-Kayu/src/service/apiCall";
+import { getProductByBarcode } from "../../service/apiCall";
 
 export const Imager = () => {
   const dispatch = useDispatch();
