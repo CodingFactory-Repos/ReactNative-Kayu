@@ -81,14 +81,11 @@ const CarrotScreen = () => {
     ];
   */
   const renderList = product => {
-    console.log('-----------------------------');
-    console.log(product);
-    console.log('-----------------------------');
 
     return (
       <TouchableOpacity onPress={() => handlePress(product)}>
         <ProductItem
-          title={product[0].name ?? product.name}
+          title={product.item.name ?? product.name}
           subtitle="Blablatest"
           badgeText="4/100 Mauvais"
           defects={
