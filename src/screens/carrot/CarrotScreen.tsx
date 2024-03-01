@@ -81,7 +81,6 @@ const CarrotScreen = () => {
     ];
   */
   const renderList = product => {
-
     console.log('-----------------------------');
     console.log(product);
     console.log('-----------------------------');
@@ -89,7 +88,7 @@ const CarrotScreen = () => {
     return (
       <TouchableOpacity onPress={() => handlePress(product)}>
         <ProductItem
-          title={product.item.name ?? product.name}
+          title={product[0].name ?? product.name}
           subtitle="Blablatest"
           badgeText="4/100 Mauvais"
           defects={
@@ -117,13 +116,13 @@ const CarrotScreen = () => {
 
   return (
     <SafeAreaView style={styles.screen}>
-      {(productList && productList[0] && (
+      {productList && productList[0] && (
         <FlatList
           data={productList}
           renderItem={renderList}
           keyExtractor={(item, index) => index.toString()}
         />
-      ))}
+      )}
       {isBottomSheetModalVisible && (
         <BottomSheet
           ref={bottomSheetRef}
