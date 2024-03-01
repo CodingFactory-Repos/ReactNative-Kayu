@@ -8,18 +8,23 @@ export async function getProductByBarcode(barcode: string) {
   await fetch(`${apiUrlBarcode}product/${barcode}`)
     .then(response => response.json())
     .then(json => (rawJson = json));
-  data.code = rawJson.code;
-  data.name = rawJson.product.product_name;
-  data.categories = rawJson.product.categories;
-  data.nutriments = rawJson.product.nutriments;
-  data.energy = rawJson.product.nutriments.energy;
-  data.energy100g = rawJson.product.nutriments['energy-kcal_100g'];
-  data.positive_nutrients = rawJson.product.nutriscore['2023'].data.positive_nutrients;
-  data.negative_nutrients = rawJson.product.nutriscore['2023'].data.negative_nutrients ? rawJson.product.nutriscore['2023'].data.negative_nutrients : [];
-  data.nutriscore_score = rawJson.product.nutriscore_score;
-  data.nutriscore_grade = rawJson.product.nutriscore_grade;
-  data.image = rawJson.product.image_front_thumb_url;
-  data.ingredients_text = rawJson.product.ingredients_text;
+
+  if (rawJson.status != 0)
+  {
+    data.code = rawJson.code;
+    data.name = rawJson.product.product_name;
+    data.categories = rawJson.product.categories;
+    data.nutriments = rawJson.product.nutriments;
+    data.energy = rawJson.product.nutriments.energy;
+    data.energy100g = rawJson.product.nutriments['energy-kcal_100g'];
+    data.positive_nutrients = rawJson.product.nutriscore['2023'].data.positive_nutrients;
+    data.negative_nutrients = rawJson.product.nutriscore['2023'].data.negative_nutrients ? rawJson.product.nutriscore['2023'].data.negative_nutrients : [];
+    data.nutriscore_score = rawJson.product.nutriscore_score;
+    data.nutriscore_grade = rawJson.product.nutriscore_grade;
+    data.image = rawJson.product.image_front_thumb_url;
+    data.ingredients_text = rawJson.product.ingredients_text;
+  }
+  else data = null;
 
   console.log(data);
   

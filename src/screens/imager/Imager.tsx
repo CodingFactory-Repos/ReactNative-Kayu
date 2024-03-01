@@ -42,6 +42,7 @@ export const Imager = () => {
           console.log(`Searching barcode ${codes[0].value}...`);
           
           getProductByBarcode(codes[0].value).then(async result => {
+            if(!result) return;
             console.log(`Product found : ${result.name}`);
             dispatch(setProduct(result));
             // productListToSave.push(result);

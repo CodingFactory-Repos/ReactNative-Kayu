@@ -81,6 +81,11 @@ const CarrotScreen = () => {
     ];
   */
   const renderList = product => {
+
+    console.log('-----------------------------');
+    console.log(product);
+    console.log('-----------------------------');
+
     return (
       <TouchableOpacity onPress={() => handlePress(product)}>
         <ProductItem
@@ -118,13 +123,7 @@ const CarrotScreen = () => {
           renderItem={renderList}
           keyExtractor={(item, index) => index.toString()}
         />
-      )) ?? (
-        <FlatList
-          data={fakeProductList}
-          renderItem={renderList}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      )}
+      ))}
       {isBottomSheetModalVisible && (
         <BottomSheet
           ref={bottomSheetRef}

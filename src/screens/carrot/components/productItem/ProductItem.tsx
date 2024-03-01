@@ -14,6 +14,9 @@ const ProductItem = ({
   nutriscore_grade,
   nutriscore_score,
 }: ProductItemProps) => {
+
+  console.log(defects);
+  
   return (
     <View style={styles.card}>
       <View style={styles.header}>
@@ -29,12 +32,12 @@ const ProductItem = ({
 
       <View style={styles.content}>
         <Text style={styles.sectionTitle}>Défauts</Text>
-        {defects.map((defect, index) => (
+        {/* {defects.map((defect, index) => (
           <View key={index} style={styles.listItem}>
             <Icon name="circle" size={10} color="#EF4444" />
             <Text style={styles.listText}>{defect}</Text>
           </View>
-        ))}
+        ))} */}
 
         <Text style={styles.sectionTitle}>Qualités</Text>
         {qualities.map((quality, index) => (
