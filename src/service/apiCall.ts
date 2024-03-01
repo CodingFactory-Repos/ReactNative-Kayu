@@ -1,21 +1,28 @@
 const apiUrlBarcode = 'https://world.openfoodfacts.org/api/v2/';
 const apiUrlSearch = 'https://world.openfoodfacts.org/cgi/search.pl?json=1&search_simple=1&search_terms='
 
-export async function getProductByBarcode(barcode: string) {
-  let data = {}, rawJson = {};
-  await fetch(`${apiUrlBarcode}product/${barcode}`)
-  .then(response => response.json())
-  .then(json => rawJson = json);
+interface positive_nutrients {
+  2023: {
+    positive_nutrients: string[];
+    negative_nutrients: string[];
+  };
+}
+export async function getProduct(barcode: string) {
+  console.log('getProduct', barcode);
+  const response = await fetch(apiUrl + barcode);
+  const json = await response.json();
 
-  data.code = rawJson.code;
-  data.name = rawJson.product.product_name;
-  data.nutriscore = rawJson.product.nutriscore_grade;
-  data.categories = rawJson.product.categories;
-  data.nutriments = rawJson.product.nutriments;
-  data.energy = rawJson.product.nutriments.energy;
-  data.energy100g = rawJson.product.nutriments['energy-kcal_100g'];
-  data.image = rawJson.product.image_front_thumb_url;
-  data.nutriscore_point = rawJson.product.nutriscore_score;
+  let data = {};
+  data.code = json.code;
+  data.name = json.product.product_name;
+  data.categories = json.product.categories;
+  data.nutriments = json.product.nutriments;
+  data.energy = json.product.nutriments.energy;
+  data.energy100g = json.product.nutriments['energy-kcal_100g'];
+  data.positive_nutrients = json.product.nutriscore['2023'].positive_nutrients;
+  data.negative_nutrients = json.product.nutriscore['2023'].negative_nutrients;
+  data.nutriscore_score = json.product.nutriscore_score;
+  data.nutriscore_grade = json.product.nutriscore_grade;
 
   return data;
 }
@@ -44,7 +51,7 @@ export async function getProductByName(productName: string)
         break;
       }
     }
-    
+
     if(alreadyPresent) continue;
 
     object.name = rawJson.products[i].product_name;

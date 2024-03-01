@@ -1,10 +1,10 @@
 import React from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
   ScrollView,
-  TouchableOpacity,
+  StyleSheet,
   Text,
+  TouchableOpacity,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import NutritionInfo from './NutritionInfo';
@@ -12,6 +12,7 @@ import { CARROT_NAVIGATOR_ROUTES } from '../../../components/navigators/CarrotNa
 import { useSelector } from 'react-redux';
 
 const fakeApiData = {
+  image_url: 'https://fakeimg.pl/300/',
   product_name: 'Ourson Chocolat',
   ingredients_text: 'Cacao, sucre, lait',
   nutriments: {
@@ -21,7 +22,7 @@ const fakeApiData = {
     sugars: 100,
     salt: 0.2,
   },
-  ecoscore_score: '75',
+  nutriscore_score: 75,
   nutriscore_grade: 'B',
 };
 const App = () => {
