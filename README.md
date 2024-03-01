@@ -13,9 +13,6 @@ To start Metro, run the following command from the _root_ of your React Native p
 ```bash
 # using npm
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
 ## Step 2: Start your Application
@@ -42,38 +39,23 @@ npm run ios
 yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### Yaku Project
+The Yaku project is a platform developed by Louis Yang, Louis Lefevbre, Thomas Lamiable, and Johan Bognon, similar to Yoka. It aims to provide users with a comprehensive solution for tracking their dietary intake, accessing nutritional information, and discovering new food products.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+### Used API
+To retrieve information about food products, we utilize the OpenFoodTracks API. This API grants us access to a vast database containing detailed information about food products, including their nutritional composition, ingredients, labels, and nutritional values.
 
-## Step 3: Modifying your App
+https://fr.openfoodfacts.org
 
-Now that you have successfully run the app, let's modify it.
+### Key Features
+- Search for food products by name, brand, or category.
+- Display detailed nutritional information for each product.
+- Track daily and historical dietary intake.
+- Receive suggestions for similar or alternative products.
+- Create shopping lists and track food purchases.
+- Technologies Used
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+ - The Yaku project is primarily developed using modern web technologies such as React Native.
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+For more information about the project and its development, feel free to check out our GitHub repository and contribute if you're interested!
 
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
