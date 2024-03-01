@@ -8,14 +8,14 @@ import {
   TAB_BAR_NAVIGATOR_ROUTES,
   TabBarNavigatorParamList,
 } from './TabNavigator.interfaces.ts';
-import {Imager} from '../../../screens/imager/Imager';
+import { Imager } from '../../../screens/imager/Imager';
+import { Search } from '../../../screens/search/Search.tsx';
 import CarrotNavigator from '../CarrotNavigator/CarrotNavigator.tsx';
 import {Image, Text, View} from 'react-native';
 
 const Tab = createBottomTabNavigator<TabBarNavigatorParamList>();
 
 const PlateScreen = () => null;
-const SearchScreen = () => null;
 
 const TabNavigator = () => {
   const {navigate} = useNavigation();
@@ -98,7 +98,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.SEARCH}
-        component={SearchScreen}
+        component={Search}
         options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({color, size}) => (
