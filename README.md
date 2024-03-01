@@ -1,8 +1,44 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+### Integrating React Native into the Yaku Project
 
-# Getting Started
+The Yaku project leverages React Native to develop a cross-platform mobile application, thus enabling a seamless user
+experience on both iOS and Android. React Native simplifies the creation of responsive user interfaces and access to an
+extensive library of components, which is crucial for providing features such as food product search, display of
+nutritional information, and tracking of dietary intake. The use of React Native supports our goal of making the Yaku
+application accessible to a wide audience by harnessing its ability to rapidly develop high-performing applications for
+various platforms.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+### Used API
+
+To retrieve information about food products, we utilize the OpenFoodTracks API. This API grants us access to a vast
+database containing detailed information about food products, including their nutritional composition, ingredients,
+labels, and nutritional values.
+
+Example request to retrieve information about a specific product by its barcode:
+
+```bash
+curl -X GET "https://fr.openfoodfacts.org/api/v0/produit/[barcode].json"
+```
+
+For further information about food products, we use the OpenFoodTracks API. This API provides us access to a
+comprehensive database containing detailed information about food products, including their nutritional composition,
+ingredients, labels, and nutritional values. To explore the API documentation and view usage examples,
+visit [OpenFoodFacts](https://fr.openfoodfacts.org).
+
+### Key Features
+
+- Search for food products by name, brand, or category.
+- Display detailed nutritional information for each product.
+- Track daily and historical dietary intake.
+- Receive suggestions for similar or alternative products.
+- Create shopping lists and track food purchases.
+- Technologies Used
+
+### Technologies Used
+
+- The Yaku project is primarily developed using modern web technologies such as React Native.
+
+For more information about the project and its development, feel free to check out our GitHub repository and contribute
+if you're interested!
 
 ## Step 1: Start the Metro Server
 
@@ -13,14 +49,12 @@ To start Metro, run the following command from the _root_ of your React Native p
 ```bash
 # using npm
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
 ## Step 2: Start your Application
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the
+following command to start your _Android_ or _iOS_ app:
 
 ### For Android
 
@@ -41,39 +75,3 @@ npm run ios
 # OR using Yarn
 yarn ios
 ```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
