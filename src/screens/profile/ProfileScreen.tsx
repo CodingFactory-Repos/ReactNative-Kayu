@@ -9,7 +9,7 @@ const ProfileScreen = () => {
   const {user} = useSelector(state => state.user);
   useEffect(() => {
     if (user) {
-      console.log(user);
+      console.log('user', user);
     }
   }, [user]);
 
@@ -24,7 +24,7 @@ const ProfileScreen = () => {
       <View>
         <Text>Information : </Text>
         <Text>Email: {user?.email}</Text>
-        <Text> Password : {user?.password} </Text>
+        {/*<Text> Password : {user?.password} </Text>*/}
       </View>
     </View>
   );

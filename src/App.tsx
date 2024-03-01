@@ -10,6 +10,7 @@ import {logger} from 'react-native-logs';
 import {Provider} from 'react-redux';
 import store from './service/redux/store.ts';
 import RootNavigator from './components/navigators/RootNavigator/RootNavigator.tsx';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const log = logger.createLogger();
 
@@ -44,11 +45,13 @@ const App = () => {
   }, []);
 
   return (
-    <Provider store={store}>
-      <NavigationContainer onReady={onReady} ref={navigationRef}>
-        <RootNavigator />
-      </NavigationContainer>
-    </Provider>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <Provider store={store}>
+        <NavigationContainer onReady={onReady} ref={navigationRef}>
+          <RootNavigator />
+        </NavigationContainer>
+      </Provider>
+    </GestureHandlerRootView>
   );
 };
 

@@ -1,18 +1,17 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 
 import AccountNavigator from '../AccountNavigator';
-import CarrotScreen from '../../../screens/carrot/CarrotScreen';
 import {
   TAB_BAR_NAVIGATOR_ROUTES,
   TabBarNavigatorParamList,
 } from './TabNavigator.interfaces.ts';
 import {Imager} from '../../../screens/imager/Imager';
+import CarrotNavigator from '../CarrotNavigator/CarrotNavigator.tsx';
 import {Image, Text, View} from 'react-native';
 import PlateScreen from '../../../screens/plate/PlateScreen.tsx';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator<TabBarNavigatorParamList>();
 
@@ -21,22 +20,9 @@ const SearchScreen = () => null;
 const TabNavigator = () => {
   const {navigate} = useNavigation();
 
-  useEffect(() => {
-    console.log('user token');
-    // AsyncStorage.getItem('user').then(userInfo => {
-    //   if (userInfo) {
-    //     console.log('user token', {userInfo});
-    //   } else {
-    //     console.log('user token not found');
-    //     // @ts-ignore
-    //     navigate(TAB_BAR_NAVIGATOR_ROUTES.ACCOUNT);
-    //   }
-    // });
-  }, [navigate]);
-
   return (
     <Tab.Navigator
-      initialRouteName={TAB_BAR_NAVIGATOR_ROUTES.CARROT}
+      initialRouteName={TAB_BAR_NAVIGATOR_ROUTES.PLATE}
       screenOptions={{
         headerShown: true,
         // Set logo in left side of header
@@ -69,7 +55,7 @@ const TabNavigator = () => {
       }}>
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.CARROT}
-        component={CarrotScreen}
+        component={CarrotNavigator}
         options={{
           tabBarLabel: 'Last Scan',
           tabBarIcon: ({color, size}) => (
