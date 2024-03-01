@@ -2,20 +2,30 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Text, TextInput, SafeAreaView, StyleSheet, TouchableOpacity, View, ScrollView, Image } from 'react-native';
 import { getProductByName } from '../../service/apiCall';
-import {Colors} from '../../utils/colors.ts';
+import { CARROT_NAVIGATOR_ROUTES } from '../../components/navigators/CarrotNavigator/CarrotNavigator.interfaces.ts';
+import { useDispatch } from 'react-redux';
+import { setProduct } from '../../service/redux/slices/productSlice.ts';
 
 export const Search = () => {
     const [query, setQuery] = useState('');
     const [products, setProducts] = useState([]);
+    const navigation = useNavigation();
+    const dispatch = useDispatch();
 
     async function searchForProduct(productName: string) {
         let products = await getProductByName(productName);
         setProducts(products);
     }
+
+    function goToDetail(product)
+    {
+        dispatch(setProduct(product));
+        navigation.navigate(CARROT_NAVIGATOR_ROUTES.MOCK);
+    }
     
     const renderProducts = () => {
         return products.map((product, index) => (
-            <View key={index} style={styles.card}>
+            <TouchableOpacity key={index} style={styles.card} onPress={() => goToDetail(product)}>
                 <View style={styles.header}>
                     <Image style={styles.image} source={{ uri: product.image }} />
                     <View style={styles.headerText}>
@@ -26,7 +36,7 @@ export const Search = () => {
                     {product.nutriscore} - "{product.nutriscore_point}/100"
                     </Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         ));
     };
 
