@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import * as Icons from "react-native-heroicons/solid";
 import {useNavigation} from '@react-navigation/native';
 
 import AccountNavigator from '../AccountNavigator';
-import CarrotScreen from '../../../screens/carrot/CarrotScreen';
 import {
   TAB_BAR_NAVIGATOR_ROUTES,
   TabBarNavigatorParamList,
 } from './TabNavigator.interfaces.ts';
 import {Imager} from '../../../screens/imager/Imager';
+import CarrotNavigator from '../CarrotNavigator/CarrotNavigator.tsx';
 import {Image, Text, View} from 'react-native';
 
 const Tab = createBottomTabNavigator<TabBarNavigatorParamList>();
@@ -35,7 +35,7 @@ const TabNavigator = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName={TAB_BAR_NAVIGATOR_ROUTES.CARROT}
+      initialRouteName={TAB_BAR_NAVIGATOR_ROUTES.PLATE}
       screenOptions={{
         headerShown: true,
         // Set logo in left side of header
@@ -68,11 +68,11 @@ const TabNavigator = () => {
       }}>
       <Tab.Screen
         name={TAB_BAR_NAVIGATOR_ROUTES.CARROT}
-        component={CarrotScreen}
+        component={CarrotNavigator}
         options={{
           tabBarLabel: 'Last Scan',
           tabBarIcon: ({color, size}) => (
-            <Icon name="home" color={color} size={size} />
+            <Icons.PlusIcon color={color} size={size} />
           ),
         }}
       />
@@ -82,7 +82,7 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: 'Plats',
           tabBarIcon: ({color, size}) => (
-            <Icon name="home" color={color} size={size} />
+            <Icons.MapIcon color={color} size={size} />
           ),
         }}
       />
@@ -92,7 +92,7 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: 'QRScan',
           tabBarIcon: ({color, size}) => (
-            <Icon name="home" color={color} size={size} />
+            <Icons.QrCodeIcon color={color} size={size} />
           ),
         }}
       />
@@ -102,7 +102,7 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({color, size}) => (
-            <Icon name="home" color={color} size={size} />
+            <Icons.MagnifyingGlassIcon color={color} size={size} />
           ),
         }}
       />
@@ -114,6 +114,9 @@ const TabNavigator = () => {
             tabBarStyle: {
               display: 'flex',
             },
+            tabBarIcon: ({color, size}) => (
+              <Icons.UserIcon color={color} size={size} />
+            ),
           };
         }}
       />
