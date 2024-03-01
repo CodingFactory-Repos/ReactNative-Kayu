@@ -44,7 +44,7 @@ export const Search = () => {
             <Text style={styles.subtitle}>{product.energy100g}kg</Text>
           </View>
           <Text style={styles.badge}>
-            {product.nutriscore} - "{product.nutriscore_point}/100"
+            {product.nutriscore_grade} - "{product.nutriscore_score}/100"
           </Text>
         </View>
       </TouchableOpacity>

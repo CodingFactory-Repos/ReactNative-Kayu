@@ -10,14 +10,14 @@ const ProductItem = ({
   subtitle,
   defects,
   qualities,
-  image_front_small_url,
+  image,
   nutriscore_grade,
   nutriscore_score,
 }: ProductItemProps) => {
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Image style={styles.image} source={{uri: image_front_small_url}} />
+        <Image style={styles.image} source={{uri: image}} />
         <View style={styles.headerText}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>

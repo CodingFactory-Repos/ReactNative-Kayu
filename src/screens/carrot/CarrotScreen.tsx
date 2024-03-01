@@ -19,7 +19,7 @@ const CarrotScreen = () => {
   // callbacks
   const handleSheetChanges = useCallback((index: number) => {
     if (index === -1) setBottomSheetModalVisible(false);
-    dispatch(setProductSearch({}));
+    // dispatch(setProductSearch({}));
   }, []);
 
   const handlePress = item => {
@@ -29,7 +29,7 @@ const CarrotScreen = () => {
   };
 
   useEffect(() => {
-    console.log('product', productList);
+    // console.log('product', productList);
   }, [productList, selectedProduct]);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const CarrotScreen = () => {
         sugars: 100,
         salt: 0.2,
       },
-      image_front_small_url:
+      image_url:
         'https://images.openfoodfacts.net/images/products/301/762/042/2003/front_en.610.100.jpg',
       nutriscore_score: 3,
       nutriscore_grade: 'c',
@@ -68,7 +68,7 @@ const CarrotScreen = () => {
         sugars: 100,
         salt: 0.2,
       },
-      image_front_small_url:
+      image_url:
         'https://images.openfoodfacts.net/images/products/301/762/042/2003/front_en.610.200.jpg',
       nutriscore_score: 3,
       nutriscore_grade: 'c',
@@ -84,7 +84,7 @@ const CarrotScreen = () => {
         sugars: 100,
         salt: 0.2,
       },
-      image_front_small_url:
+      image_url:
         'https://images.openfoodfacts.net/images/products/301/762/042/2003/front_en.610.200.jpg',
       nutriscore_score: 3,
       nutriscore_grade: 'c',
@@ -105,8 +105,8 @@ const CarrotScreen = () => {
           }
           nutriments={product.item.nutriments ?? product.nutriments}
           qualities={['Protéines', 'Fibres', 'Graisses saturées']}
-          image_front_small_url={
-            product.item.image_front_small_url ?? product.image_front_small_url
+          image={
+            product.item.image ?? product.image
           }
           nutriscore_score={
             product.item.nutriscore_score ?? product.nutriscore_score

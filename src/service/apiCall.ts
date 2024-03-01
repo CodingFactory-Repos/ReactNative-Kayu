@@ -17,6 +17,7 @@ export async function getProductByBarcode(barcode: string) {
   data.nutriscore_score = rawJson.product.nutriscore_score;
   data.nutriscore_grade = rawJson.product.nutriscore_grade;
   data.image = rawJson.product.image_front_thumb_url;
+  data.ingredients_text = rawJson.product.ingredients_text;
   
   return data;
 }
@@ -39,7 +40,7 @@ export async function getProductByName(productName: string)
     // no foreach, because we want to use break;
     for(let j = 0; j < data.length; j++)
     {
-      if(data[j].name.toLocaleLowerCase() == rawJson.products[i].product_name.toLocaleLowerCase())
+      if(j < data.length && data[j].name.toLocaleLowerCase() == rawJson.products[i].product_name.toLocaleLowerCase())
       {
         alreadyPresent = true;
         break;
@@ -48,16 +49,17 @@ export async function getProductByName(productName: string)
 
     if(alreadyPresent) continue;
 
-    data.name = rawJson.products[i].product_name;
-    data.categories = rawJson.products[i].categories;
-    data.nutriments = rawJson.products[i].nutriments;
-    data.energy = rawJson.products[i].nutriments.energy;
-    data.energy100g = rawJson.products[i].nutriments['energy-kcal_100g'];
-    data.positive_nutrients = rawJson.products[i].nutriscore['2023'].positive_nutrients;
-    data.negative_nutrients = rawJson.products[i].nutriscore['2023'].negative_nutrients;
-    data.nutriscore_score = rawJson.products[i].nutriscore_score;
-    data.nutriscore_grade = rawJson.products[i].nutriscore_grade;
-    data.image = rawJson.products[i].image_front_thumb_url;
+    object.name = rawJson.products[i].product_name;
+    object.categories = rawJson.products[i].categories;
+    object.nutriments = rawJson.products[i].nutriments;
+    object.energy = rawJson.products[i].nutriments.energy;
+    object.energy100g = rawJson.products[i].nutriments['energy-kcal_100g'];
+    object.positive_nutrients = rawJson.products[i].nutriscore['2023'].positive_nutrients;
+    object.negative_nutrients = rawJson.products[i].nutriscore['2023'].negative_nutrients;
+    object.nutriscore_score = rawJson.products[i].nutriscore_score;
+    object.nutriscore_grade = rawJson.products[i].nutriscore_grade;
+    object.image = rawJson.products[i].image_front_thumb_url;
+    object.ingredients_text = rawJson.products[i].ingredients_text;
 
     data.push(object);
   }

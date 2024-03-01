@@ -13,7 +13,7 @@ export interface ProductItemProps {
   ingredients_text: string;
   categories: string;
   qualities: string[];
-  image_front_small_url: string;
+  image: string;
   nutriscore_grade: number;
   nutriscore_score: string;
 }
