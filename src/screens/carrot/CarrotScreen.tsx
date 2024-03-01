@@ -17,7 +17,6 @@ const CarrotScreen = () => {
   // callbacks
   const handleSheetChanges = useCallback((index: number) => {
     if (index === -1) setBottomSheetModalVisible(false);
-    // dispatch(setProductSearch({}));
   }, []);
 
   const handlePress = item => {
